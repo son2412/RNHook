@@ -1,8 +1,8 @@
 import React, {useRef, useState} from 'react';
 import {StatusBar, Text, TouchableOpacity, View} from 'react-native';
 import styles from './Counter.Style';
-import colors from '../Themes/Colors';
-import {barStyle} from '../const';
+import colors from '../../Themes/Colors';
+import {barStyle} from '../../const';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 
