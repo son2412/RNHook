@@ -1,6 +1,7 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import ProfileScreen from '../Containers/Profile/Profile.Screen';
 import FollowerScreen from '../Containers/Follower/Follower.Screen';
+import SignInScreen from '../Containers/SignIn/SignIn.Screen';
 import React from 'react';
 import colors from '../Themes/Colors';
 import styles from './DrawerNavigator.Style';
@@ -29,6 +30,11 @@ const DrawerNavigatorScreen = () => {
         name="CounterScreen"
         component={CounterScreen}
         options={{drawerLabel: 'Counter'}}
+      />
+      <Drawer.Screen
+        name="SignIn"
+        component={SignInScreen}
+        options={{drawerLabel: 'LogOut'}}
       />
     </Drawer.Navigator>
   );
