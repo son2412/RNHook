@@ -11,9 +11,9 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import styles from './Follower.Style';
 import {getFollowerRequest} from './Follower.Action';
-import NoDataView from '../Components/NoDataView';
-import colors from '../Themes/Colors';
-import {barStyle} from '../const';
+import NoDataView from '../../Components/NoDataView';
+import colors from '../../Themes/Colors';
+import {barStyle} from '../../const';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 

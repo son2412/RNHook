@@ -4,8 +4,8 @@ import {
   getProfileFail,
   getProfileSuccess,
 } from './Profile.Action';
-import {getProfile} from '../api';
-import {sendNetworkFail} from '../actions';
+import {getProfile} from '../../api';
+import {sendNetworkFail} from '../../actions';
 
 export function* watchGetProfile() {
   yield takeLatest(GET_PROFILE_REQUEST, handleGetProfile);

@@ -1,10 +1,10 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import ProfileScreen from '../Profile/Profile.Screen';
-import FollowerScreen from '../Follower/Follower.Screen';
+import ProfileScreen from '../Containers/Profile/Profile.Screen';
+import FollowerScreen from '../Containers/Follower/Follower.Screen';
 import React from 'react';
 import colors from '../Themes/Colors';
 import styles from './DrawerNavigator.Style';
-import CounterScreen from '../Counter/Counter.Screen';
+import CounterScreen from '../Containers/Counter/Counter.Screen';
 
 const Drawer = createDrawerNavigator();
 

@@ -8,11 +8,11 @@ import {
   View,
 } from 'react-native';
 import styles from './Profile.Style';
-import colors from '../Themes/Colors';
+import colors from '../../Themes/Colors';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {barStyle} from '../const';
+import {barStyle} from '../../const';
 import {useDispatch, useSelector} from 'react-redux';
-import NoDataView from '../Components/NoDataView';
+import NoDataView from '../../Components/NoDataView';
 import {getProfileRequest} from './Profile.Action';
 import {useNavigation} from '@react-navigation/native';
 
