@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
   Text,
   View,
@@ -12,6 +12,9 @@ import {useNavigation} from '@react-navigation/native';
 import {Input, Icon} from 'react-native-elements';
 import PropTypes from 'prop-types';
 import Image from '../../../assets/images';
+import {useDispatch, useSelector} from 'react-redux';
+import {signInRequest} from './SignIn.Action';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const TabSelector = ({selected}) => {
   return (
@@ -25,6 +28,9 @@ TabSelector.propTypes = {
   selected: PropTypes.bool.isRequired,
 };
 const SignInScreen = () => {
+  const signIn = useSelector(state => state.signIn);
+  const dispatch = useDispatch();
+
   let [isLoading, setIsLoading] = useState(false);
   let [selectedCategory, setSelectedCategory] = useState(false);
   let [email, setEmail] = useState('');
@@ -53,14 +59,25 @@ const SignInScreen = () => {
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    console.log(signIn.data);
+    if (signIn.data !== null && signIn.data.token) {
+      AsyncStorage.setItem('token', signIn.data.token);
+      // navigation.navigate('Drawer', {});
+    }
+  }, [signIn, navigation]);
+
+  useEffect(() => {}, []);
+
   const _onPressSignIn = () => {
     setIsLoading(true);
     // Simulate an API call
+    dispatch(signInRequest({email: email, password: password}));
     setTimeout(() => {
       LayoutAnimation.easeInEaseOut();
       setIsLoading(false);
       setIsEmailValid(validateEmail(email) || emailInput.shake());
-      setIsPasswordValid(password.length >= 8 || passwordInput.shake());
+      // setIsPasswordValid(password.length >= 6 || passwordInput.shake());
     }, 1500);
   };
   const _onPressSignUp = () => {
@@ -70,7 +87,7 @@ const SignInScreen = () => {
       LayoutAnimation.easeInEaseOut();
       setIsLoading(false);
       setIsEmailValid(validateEmail(email) || emailInput.shake());
-      setIsPasswordValid(password.length >= 8 || passwordInput.shake());
+      // setIsPasswordValid(password.length >= 6 || passwordInput.shake());
       setIsConfirmationValid(
         password === passwordConfirmation || confirmationInput.shake(),
       );

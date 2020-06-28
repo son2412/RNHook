@@ -9,6 +9,7 @@ import rootReducer from './src/reducers';
 import rootSaga from './src/sagas';
 import RootContainer from './src/Root/RootContainer.Screen';
 import 'react-native-gesture-handler';
+import {createLogger} from 'redux-logger';
 
 const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
@@ -18,7 +19,10 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
+const store = createStore(
+  persistedReducer,
+  applyMiddleware(sagaMiddleware, createLogger()),
+);
 const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
