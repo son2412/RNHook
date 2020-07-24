@@ -6,13 +6,13 @@ import {
   View,
   SafeAreaView,
 } from 'react-native';
-import styles from './DetailProfile.Style';
+import styles from './Chat.Style';
 import colors from '../../Themes/Colors';
 import {barStyle} from '../../const';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 
-const DetailProfileScreen = () => {
+const ChatScreen = () => {
   const navigation = useNavigation();
 
   const renderToolbar = () => {
@@ -25,15 +25,15 @@ const DetailProfileScreen = () => {
         />
         <TouchableOpacity
           style={styles.viewWrapIcLeft}
-          onPress={() => navigation.goBack()}>
+          onPress={() => navigation.openDrawer()}>
           <MaterialCommunityIcons
-            name={'arrow-left'}
+            name={'menu'}
             size={30}
             color={colors.white}
           />
         </TouchableOpacity>
         <View style={styles.viewWrapTitleToolbar}>
-          <Text style={styles.titleToolbar}>Detail profile</Text>
+          <Text style={styles.titleToolbar}>Chats</Text>
         </View>
         <View style={styles.viewWrapIcRight} />
       </View>
@@ -46,11 +46,11 @@ const DetailProfileScreen = () => {
         <View style={styles.mainContainer}>
           {renderToolbar()}
           <Text style={styles.textContent}>
-            Example this is the detail profile screen
+            Example this is the list chat
           </Text>
         </View>
       </SafeAreaView>
     </Fragment>
   );
 };
-export default DetailProfileScreen;
+export default ChatScreen;

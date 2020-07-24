@@ -60,10 +60,9 @@ const SignInScreen = () => {
   };
 
   useEffect(() => {
-    console.log(signIn.data);
     if (signIn.data !== null && signIn.data.token) {
       AsyncStorage.setItem('token', signIn.data.token);
-      // navigation.navigate('Drawer', {});
+      navigation.navigate('Drawer', {});
     }
   }, [signIn, navigation]);
 
@@ -76,7 +75,7 @@ const SignInScreen = () => {
     setTimeout(() => {
       LayoutAnimation.easeInEaseOut();
       setIsLoading(false);
-      setIsEmailValid(validateEmail(email) || emailInput.shake());
+      // setIsEmailValid(validateEmail(email) || emailInput.shake());
       // setIsPasswordValid(password.length >= 6 || passwordInput.shake());
     }, 1500);
   };
@@ -240,8 +239,8 @@ const SignInScreen = () => {
                 buttonStyle={styles.loginButton}
                 containerStyle={{marginTop: 32, flex: 0}}
                 activeOpacity={0.8}
-                title={isLoginPage ? 'LOGIN' : 'SIGN UP'}
-                onPress={isLoginPage ? _onPressSignIn : _onPressSignUp}
+                title={!isLoginPage ? 'LOGIN' : 'SIGN UP'}
+                onPress={!isLoginPage ? _onPressSignIn : _onPressSignUp}
                 titleStyle={styles.loginTextButton}
                 loading={isLoading}
                 disabled={isLoading}

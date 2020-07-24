@@ -10,8 +10,8 @@ const ApplicationStyle = StyleSheet.create({
   toolbar: {
     flexDirection: 'row',
     width: '100%',
-    height: Platform.OS === 'android' ? 48 : isIphoneX() ? 88 : 78,
-    paddingTop: Platform.OS === 'android' ? 0 : isIphoneX() ? 40 : 30,
+    height: Platform.OS === 'android' ? 48 : isIphoneX() ? 48 : 48,
+    paddingTop: Platform.OS === 'android' ? 0 : isIphoneX() ? 0 : 0,
     backgroundColor: colors.primary,
     alignItems: 'center',
   },
