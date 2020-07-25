@@ -14,6 +14,8 @@ import {useNavigation} from '@react-navigation/native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import ListChatScreen from '../ListChat/ListChat.Screen';
 import ActiveScreen from '../Active/Active.Screen';
+import CallScreen from '../Call/Call.Screen';
+import GroupScreen from '../Group/Group.Screen';
 
 const Tab = createMaterialTopTabNavigator();
 const ChatScreen = () => {
@@ -52,6 +54,8 @@ const ChatScreen = () => {
           <Tab.Navigator>
             <Tab.Screen name="Message" component={ListChatScreen} />
             <Tab.Screen name="Active" component={ActiveScreen} />
+            <Tab.Screen name="Call" component={CallScreen} />
+            <Tab.Screen name="Group" component={GroupScreen} />
           </Tab.Navigator>
         </View>
       </SafeAreaView>
