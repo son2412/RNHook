@@ -11,7 +11,11 @@ import colors from '../../Themes/Colors';
 import {barStyle} from '../../const';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import ListChatScreen from '../ListChat/ListChat.Screen';
+import ActiveScreen from '../Active/Active.Screen';
 
+const Tab = createMaterialTopTabNavigator();
 const ChatScreen = () => {
   const navigation = useNavigation();
 
@@ -45,9 +49,10 @@ const ChatScreen = () => {
       <SafeAreaView style={{flex: 1}}>
         <View style={styles.mainContainer}>
           {renderToolbar()}
-          <Text style={styles.textContent}>
-            Example this is the list chat
-          </Text>
+          <Tab.Navigator>
+            <Tab.Screen name="Message" component={ListChatScreen} />
+            <Tab.Screen name="Active" component={ActiveScreen} />
+          </Tab.Navigator>
         </View>
       </SafeAreaView>
     </Fragment>
