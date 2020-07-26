@@ -10,6 +10,7 @@ import SignInScreen from '../Containers/SignIn/SignIn.Screen';
 import Toast from 'react-native-simple-toast';
 import {useDispatch, useSelector} from 'react-redux';
 import {clearNetworkFail} from '../actions';
+import DetailChatScreen from '../Containers/DetailChat/DetailChat.Screen';
 
 const Stack = createStackNavigator();
 
@@ -77,6 +78,11 @@ const RootContainerScreen = () => {
           <Stack.Screen
             name="DetailFollowerScreen"
             component={DetailFollowerScreen}
+            options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
+          />
+          <Stack.Screen
+            name="DetailChatScreen"
+            component={DetailChatScreen}
             options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
           />
         </Stack.Navigator>

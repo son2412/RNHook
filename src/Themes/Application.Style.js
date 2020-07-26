@@ -37,6 +37,9 @@ const ApplicationStyle = StyleSheet.create({
   },
   viewWrapIcRight: {
     flex: 1,
+    flexDirection: 'row',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
     justifyContent: 'center',
     alignItems: 'center',
   },
