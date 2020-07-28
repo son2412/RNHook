@@ -11,6 +11,11 @@ export const api = apisauce.create({
   timeout: 15000,
 });
 
+export const api_test = apisauce.create({
+  baseURL: 'https://api.stackexchange.com/2.2/',
+  timeout: 15000,
+});
+
 export const getProfile = body => {
   return api_git.get(`users/${body.username}`);
 };
@@ -21,4 +26,8 @@ export const getFollower = body => {
 
 export const loginIn = body => {
   return api.post('auth/login', body);
+};
+
+export const listUserActive = page => {
+  return api_test.get(`users?page=${page}&order=desc&sort=reputation&site=stackoverflow`);
 };
