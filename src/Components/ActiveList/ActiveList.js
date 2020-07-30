@@ -10,18 +10,6 @@ const ActiveList = ({data, loading, page, setPage, fetchData}) => {
     return <UserItem item={item} />;
   };
 
-  const renderSeparator = () => {
-    return (
-      <View
-        style={{
-          height: 2,
-          width: '100%',
-          backgroundColor: '#CED0CE',
-        }}
-      />
-    );
-  };
-
   const renderFooter = () => {
     if (!loading) return null;
     return <ActivityIndicator style={{color: '#000'}} />;
@@ -35,24 +23,20 @@ const ActiveList = ({data, loading, page, setPage, fetchData}) => {
   };
 
   const onRefresh = () => {
-    setRefreshing(true)
+    setRefreshing(true);
     fetchData(1);
     setRefreshing(false);
-  }
+  };
 
   return (
     <FlatList
       data={data}
       refreshControl={
-        <RefreshControl
-          refreshing={refreshing}
-          onRefresh={onRefresh}
-        />
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
       renderItem={renderItem}
-      keyExtractor={(item, index) => item.user_id}
+      keyExtractor={(item, index) => `${item.id}`}
       onEndReachedThreshold={0.1}
-      // ItemSeparatorComponent={renderSeparator}
       ListFooterComponent={renderFooter}
       onEndReached={handleLoadMore}
     />

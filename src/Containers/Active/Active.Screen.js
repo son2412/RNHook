@@ -13,11 +13,11 @@ const ActiveScreen = () => {
   const listUserActive = useSelector(state => state.getUserActive.data);
   const fetching = useSelector(state => state.getUserActive.fetching);
   useEffect(() => {
-    dispatch(activeRequest(page));
+    dispatch(activeRequest({page_index: page}));
   }, [dispatch]);
 
   const fetchData = page => {
-    dispatch(activeRequest(page));
+    dispatch(activeRequest({page_index: page}));
   };
 
   return (

@@ -6,6 +6,7 @@ import {
   Button,
   ImageBackground,
   LayoutAnimation,
+  TouchableOpacity,
 } from 'react-native';
 import styles from './SignIn.Style';
 import {useNavigation} from '@react-navigation/native';
@@ -75,8 +76,8 @@ const SignInScreen = () => {
     setTimeout(() => {
       LayoutAnimation.easeInEaseOut();
       setIsLoading(false);
-      // setIsEmailValid(validateEmail(email) || emailInput.shake());
-      // setIsPasswordValid(password.length >= 6 || passwordInput.shake());
+      setIsEmailValid(validateEmail(email));
+      setIsPasswordValid(password.length >= 6);
     }, 1500);
   };
   const _onPressSignUp = () => {
@@ -86,7 +87,7 @@ const SignInScreen = () => {
       LayoutAnimation.easeInEaseOut();
       setIsLoading(false);
       setIsEmailValid(validateEmail(email) || emailInput.shake());
-      // setIsPasswordValid(password.length >= 6 || passwordInput.shake());
+      setIsPasswordValid(password.length >= 6);
       setIsConfirmationValid(
         password === passwordConfirmation || confirmationInput.shake(),
       );
@@ -248,13 +249,16 @@ const SignInScreen = () => {
             </View>
           </KeyboardAvoidingView>
           <View style={styles.helpContainer}>
-            <Button
+            <TouchableOpacity onPress={() => navigation.navigate('Drawer', {})}>
+              <Text style={{color: 'white'}}>{'Need help ?'}</Text>
+            </TouchableOpacity>
+            {/* <Button
               title={'Need help ?'}
               titleStyle={{color: 'white'}}
               buttonStyle={{backgroundColor: 'transparent'}}
               underlayColor="transparent"
               onPress={() => navigation.navigate('Drawer', {})}
-            />
+            /> */}
           </View>
         </View>
       </ImageBackground>

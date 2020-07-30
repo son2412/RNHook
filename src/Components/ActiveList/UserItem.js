@@ -7,22 +7,15 @@ import Images from '../../../assets/images';
 import styles from './style';
 
 const UserItem = ({item}) => {
-  const {display_name, profile_image} = item;
+  const {first_name, last_name, image} = item;
   const onPress = () => {
     alert('Clicked ');
   };
   return (
     <TouchableRipple onPress={onPress} rippleColor="rgba(0, 0, 0, .20)">
       <View style={styles.item}>
-        <Avatar uri={profile_image} enableDot />
-        <Text style={styles.userName}>
-          {/* {name.first[0].toUpperCase() +
-            name.first.slice(1) +
-            ' ' +
-            name.last[0].toUpperCase() +
-            name.last.slice(1)} */}
-            {display_name}
-        </Text>
+        <Avatar uri={image && image.url} enableDot />
+        <Text style={styles.userName}>{first_name + ' ' + last_name}</Text>
         <Image style={styles.wave} source={Images.Images.Wave} />
       </View>
     </TouchableRipple>
