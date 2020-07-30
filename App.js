@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import createSagaMiddleware from 'redux-saga';
 import AsyncStorage from '@react-native-community/async-storage';
 import {applyMiddleware, createStore} from 'redux';
@@ -27,14 +27,13 @@ const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
 
-export default class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <RootContainer />
-        </PersistGate>
-      </Provider>
-    );
-  }
-}
+const App = () => {
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <RootContainer />
+      </PersistGate>
+    </Provider>
+  );
+};
+export default App;
