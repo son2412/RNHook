@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, Image} from 'react-native';
+import {View} from 'react-native';
 import {TouchableRipple, Text} from 'react-native-paper';
-import _ from 'lodash';
 import Avatar from '../Avatar/Avatar';
 import styles from './style';
 import {useNavigation} from '@react-navigation/native';

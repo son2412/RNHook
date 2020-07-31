@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-import {FlatList, View, RefreshControl, ActivityIndicator} from 'react-native';
+import {FlatList, RefreshControl, ActivityIndicator} from 'react-native';
 import UserItem from './UserItem';
-
-import {users} from '../../../assets/data';
 
 const ActiveList = ({data, loading, page, setPage, fetchData}) => {
   const [refreshing, setRefreshing] = useState(false);

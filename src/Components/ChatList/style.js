@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     paddingLeft: 8,
     fontSize: 14,
-    color: 'grey'
-  }
+    color: 'grey',
+  },
 });
 
 export default styles;

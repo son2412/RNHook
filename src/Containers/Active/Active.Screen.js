@@ -16,8 +16,8 @@ const ActiveScreen = () => {
     dispatch(activeRequest({page_index: page}));
   }, [dispatch]);
 
-  const fetchData = page => {
-    dispatch(activeRequest({page_index: page}));
+  const fetchData = page_index => {
+    dispatch(activeRequest({page_index: page_index}));
   };
 
   return (

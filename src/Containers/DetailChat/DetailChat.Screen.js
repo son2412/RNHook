@@ -34,9 +34,9 @@ const DetailChatScreen = () => {
       },
     ]);
   }, []);
-  const onSend = useCallback((messages = []) => {
+  const onSend = useCallback((message = []) => {
     setMessages(previousMessages =>
-      GiftedChat.append(previousMessages, messages),
+      GiftedChat.append(previousMessages, message),
     );
   }, []);
 

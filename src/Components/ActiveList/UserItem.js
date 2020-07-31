@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, Image} from 'react-native';
+import {View, Image, Alert} from 'react-native';
 import {TouchableRipple, Text} from 'react-native-paper';
-import _ from 'lodash';
 import Avatar from '../Avatar/Avatar';
 import Images from '../../../assets/images';
 import styles from './style';
@@ -9,7 +8,7 @@ import styles from './style';
 const UserItem = ({item}) => {
   const {first_name, last_name, image} = item;
   const onPress = () => {
-    alert('Clicked ');
+    Alert.alert('Clicked ');
   };
   return (
     <TouchableRipple onPress={onPress} rippleColor="rgba(0, 0, 0, .20)">

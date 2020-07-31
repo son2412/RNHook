@@ -4,6 +4,7 @@ import {watchGetFollower} from './Containers/Follower/Follower.Saga';
 import {watchSignIn} from './Containers/SignIn/SignIn.Saga';
 import {watchGetUserActive} from './Containers/Active/Active.Saga';
 import {watchGetListGroup} from './Containers/ListChat/ListChat.Saga';
+import {watchGetMyProfile} from './DrawerNavigator/MyProfile.Saga';
 
 export default function* rootSaga() {
   yield all([
@@ -12,5 +13,6 @@ export default function* rootSaga() {
     watchSignIn(),
     watchGetUserActive(),
     watchGetListGroup(),
+    watchGetMyProfile(),
   ]);
 }
