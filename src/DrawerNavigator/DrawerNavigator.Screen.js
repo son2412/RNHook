@@ -7,6 +7,7 @@ import colors from '../Themes/Colors';
 import styles from './DrawerNavigator.Style';
 import CounterScreen from '../Containers/Counter/Counter.Screen';
 import {SafeAreaView} from 'react-native';
+import DrawerContentScreen from './DrawerContent.Screen';
 
 const Drawer = createDrawerNavigator();
 
@@ -15,6 +16,7 @@ const DrawerNavigatorScreen = () => {
     <Fragment>
       <SafeAreaView style={{flex: 1}}>
         <Drawer.Navigator
+          drawerContent={() => <DrawerContentScreen />}
           drawerContentOptions={{
             activeTintColor: colors.primary,
             labelStyle: styles.textItemMenu,

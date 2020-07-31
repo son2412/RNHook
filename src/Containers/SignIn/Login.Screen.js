@@ -203,7 +203,7 @@ const SignInScreen = () => {
           </Animatable.View>
         )}
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Drawer', {})}>
           <Text style={{color: '#009387', marginTop: 15}}>
             Forgot password?
           </Text>
