@@ -40,8 +40,7 @@ const DrawerContentScreen = () => {
                   source={
                     profile.image
                       ? {
-                          uri:
-                            'https://api.adorable.io/avatars/50/abott@adorable.png',
+                          uri: profile.image.url,
                         }
                       : Images.Images.Avatar
                   }
