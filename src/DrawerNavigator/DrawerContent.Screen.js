@@ -17,6 +17,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {myProfileRequest} from './MyProfile.Action';
 import {useDispatch, useSelector} from 'react-redux';
 import Images from '../../assets/images';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const DrawerContentScreen = () => {
   const paperTheme = useTheme();
@@ -27,6 +28,10 @@ const DrawerContentScreen = () => {
   useEffect(() => {
     dispatch(myProfileRequest());
   }, [dispatch]);
+  const signOut = async () => {
+    await AsyncStorage.removeItem('token');
+    navigation.navigate('SignIn', {})
+  }
   return (
     <View style={{flex: 1}}>
       <DrawerContentScrollView>
@@ -87,7 +92,7 @@ const DrawerContentScreen = () => {
               )}
               label="Profile"
               onPress={() => {
-                navigation.navigate('ProfileScreen');
+                navigation.navigate('DetailProfileScreen');
               }}
             />
             <DrawerItem
@@ -97,6 +102,15 @@ const DrawerContentScreen = () => {
               label="Chat"
               onPress={() => {
                 navigation.navigate('Chats');
+              }}
+            />
+            <DrawerItem
+              icon={({color, size}) => (
+                <Icon name="account-outline" color={color} size={size} />
+              )}
+              label="Profile Dev"
+              onPress={() => {
+                navigation.navigate('ProfileScreen');
               }}
             />
             {/* <DrawerItem
@@ -148,9 +162,7 @@ const DrawerContentScreen = () => {
             <Icon name="exit-to-app" color={color} size={size} />
           )}
           label="Sign Out"
-          onPress={() => {
-            // signOut();
-          }}
+          onPress={signOut}
         />
       </Drawer.Section>
     </View>

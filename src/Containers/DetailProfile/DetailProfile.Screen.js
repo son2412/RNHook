@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   SafeAreaView,
+  Image,
 } from 'react-native';
 import styles from './DetailProfile.Style';
 import colors from '../../Themes/Colors';
@@ -33,9 +34,11 @@ const DetailProfileScreen = () => {
           />
         </TouchableOpacity>
         <View style={styles.viewWrapTitleToolbar}>
-          <Text style={styles.titleToolbar}>Detail profile</Text>
+          {/* <Text style={styles.titleToolbar}>Detail profile</Text> */}
         </View>
-        <View style={styles.viewWrapIcRight} />
+        <View style={styles.viewWrapIcRight}>
+          <Text style={styles.titleToolbar}>Edit</Text>
+        </View>
       </View>
     );
   };
@@ -45,9 +48,23 @@ const DetailProfileScreen = () => {
       <SafeAreaView style={{flex: 1}}>
         <View style={styles.mainContainer}>
           {renderToolbar()}
-          <Text style={styles.textContent}>
-            Example this is the detail profile screen
-          </Text>
+          <View style={styles.header} />
+          <Image
+            style={styles.avatar}
+            source={{
+              uri: 'https://bootdey.com/img/Content/avatar/avatar6.png',
+            }}
+          />
+          <View style={styles.body}>
+            <View style={styles.bodyContent}>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text>Opcion 1</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text>Opcion 2</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
       </SafeAreaView>
     </Fragment>
