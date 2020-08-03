@@ -6,7 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import DetailProfileScreen from '../Containers/DetailProfile/DetailProfile.Screen';
 import DetailFollowerScreen from '../Containers/DetailFollower/DetailFollower.Screen';
 import DrawerNavigatorScreen from '../DrawerNavigator/DrawerNavigator.Screen';
-import SignInScreen from '../Containers/SignIn/SignIn.Screen';
+// import SignInScreen from '../Containers/SignIn/SignIn.Screen';
 import LogInScreen from '../Containers/SignIn/Login.Screen';
 import Toast from 'react-native-simple-toast';
 import {useDispatch, useSelector} from 'react-redux';
@@ -66,7 +66,11 @@ const RootContainerScreen = () => {
     <View style={styles.mainContainer}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="SignIn" headerMode={'none'}>
-          <Stack.Screen name="SignIn" component={LogInScreen} />
+          <Stack.Screen
+            name="SignIn"
+            component={LogInScreen}
+            options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
+          />
           <Stack.Screen
             name="SignUp"
             component={SignUpScreen}

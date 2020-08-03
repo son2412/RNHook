@@ -12,69 +12,32 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import styles from './SignUp.Style';
+import moment from 'moment';
 
 const SignUpScreen = ({navigation}) => {
-  const [show, setShow] = React.useState(false);
-  const [data, setData] = React.useState({
-    first_name: '',
-    last_name: '',
-    phone: '',
-    email: '',
-    password: '',
-    gender: '',
-    birth: '',
-    confirm_password: '',
-    check_textInputChange: false,
-    secureTextEntry: true,
-    confirm_secureTextEntry: true,
-  });
+  const [show, setShow] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [gender, setGender] = useState('');
+  const [birth, setBirth] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [confirmSecureTextEntry, setConfirmSecureTextEntry] = useState(true);
 
-  const textInputChange = val => {
-    if (val.length !== 0) {
-      setData({
-        ...data,
-        username: val,
-        check_textInputChange: true,
-      });
-    } else {
-      setData({
-        ...data,
-        username: val,
-        check_textInputChange: false,
-      });
-    }
-  };
+  const handlePasswordChange = val => setPassword(val);
 
-  const handlePasswordChange = val => {
-    setData({
-      ...data,
-      password: val,
-    });
-  };
+  const handleConfirmPasswordChange = val => setConfirmPassword(val);
 
-  const handleConfirmPasswordChange = val => {
-    setData({
-      ...data,
-      confirm_password: val,
-    });
-  };
+  const updateSecureTextEntry = () => setSecureTextEntry(!secureTextEntry);
 
-  const updateSecureTextEntry = () => {
-    setData({
-      ...data,
-      secureTextEntry: !data.secureTextEntry,
-    });
-  };
-
-  const updateConfirmSecureTextEntry = () => {
-    setData({
-      ...data,
-      confirm_secureTextEntry: !data.confirm_secureTextEntry,
-    });
-  };
+  const updateConfirmSecureTextEntry = () =>
+    setConfirmSecureTextEntry(!confirmSecureTextEntry);
 
   const handleConfirmDate = date => {
-    console.log(date);
+    setBirth(moment(date).format('YYYY-MM-DD'));
     setShow(false);
   };
 
@@ -97,9 +60,9 @@ const SignUpScreen = ({navigation}) => {
               placeholder="Your FirstName"
               style={styles.textInput}
               autoCapitalize="none"
-              onChangeText={val => textInputChange(val)}
+              onChangeText={val => setFirstName(val)}
             />
-            {data.check_textInputChange ? (
+            {firstName ? (
               <Animatable.View animation="bounceIn">
                 <Feather name="check-circle" color="green" size={20} />
               </Animatable.View>
@@ -112,9 +75,9 @@ const SignUpScreen = ({navigation}) => {
               placeholder="Your LastName"
               style={styles.textInput}
               autoCapitalize="none"
-              onChangeText={val => textInputChange(val)}
+              onChangeText={val => setLastName(val)}
             />
-            {data.check_textInputChange ? (
+            {lastName ? (
               <Animatable.View animation="bounceIn">
                 <Feather name="check-circle" color="green" size={20} />
               </Animatable.View>
@@ -127,9 +90,9 @@ const SignUpScreen = ({navigation}) => {
               placeholder="Your Email"
               style={styles.textInput}
               autoCapitalize="none"
-              onChangeText={val => textInputChange(val)}
+              onChangeText={val => setEmail(val)}
             />
-            {data.check_textInputChange ? (
+            {email ? (
               <Animatable.View animation="bounceIn">
                 <Feather name="check-circle" color="green" size={20} />
               </Animatable.View>
@@ -142,9 +105,9 @@ const SignUpScreen = ({navigation}) => {
               placeholder="Your Phone"
               style={styles.textInput}
               autoCapitalize="none"
-              onChangeText={val => textInputChange(val)}
+              onChangeText={val => setPhone(val)}
             />
-            {data.check_textInputChange ? (
+            {phone ? (
               <Animatable.View animation="bounceIn">
                 <Feather name="check-circle" color="green" size={20} />
               </Animatable.View>
@@ -153,15 +116,16 @@ const SignUpScreen = ({navigation}) => {
           <Text style={[styles.text_footer, {marginTop: 15}]}>Birth</Text>
           <View style={styles.action}>
             <FontAwesome name="calendar" color="#05375a" size={20} />
-            <TextInput
-              placeholder="Your Birth"
-              style={styles.textInput}
-              autoCapitalize="none"
-              onTouchStart={() => setShow(true)}
-              editable={false}
-            />
-
-            {data.check_textInputChange ? (
+            <TouchableOpacity onPress={() => setShow(true)}>
+              <TextInput
+                placeholder="Your Birth"
+                style={styles.textInput}
+                autoCapitalize="none"
+                // onTouchStart={() => setShow(true)}
+                editable={false}
+              />
+            </TouchableOpacity>
+            {birth ? (
               <Animatable.View animation="bounceIn">
                 <Feather name="check-circle" color="green" size={20} />
               </Animatable.View>
@@ -176,17 +140,16 @@ const SignUpScreen = ({navigation}) => {
           <Text style={[styles.text_footer, {marginTop: 15}]}>Gender</Text>
           <View style={styles.action}>
             <FontAwesome name="transgender" color="#05375a" size={20} />
-            <View
-              style={styles.view_gender}>
-              <TouchableOpacity>
+            <View style={styles.view_gender}>
+              <TouchableOpacity onPress={() => setGender(1)}>
                 <Text style={styles.element_gender}>Male</Text>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => setGender(1)}>
                 <Text style={styles.element_gender}>Female</Text>
               </TouchableOpacity>
             </View>
 
-            {data.check_textInputChange ? (
+            {gender ? (
               <Animatable.View animation="bounceIn">
                 <Feather name="check-circle" color="green" size={20} />
               </Animatable.View>
@@ -205,13 +168,13 @@ const SignUpScreen = ({navigation}) => {
             <Feather name="lock" color="#05375a" size={20} />
             <TextInput
               placeholder="Your Password"
-              secureTextEntry={data.secureTextEntry ? true : false}
+              secureTextEntry={secureTextEntry ? true : false}
               style={styles.textInput}
               autoCapitalize="none"
               onChangeText={val => handlePasswordChange(val)}
             />
             <TouchableOpacity onPress={updateSecureTextEntry}>
-              {data.secureTextEntry ? (
+              {secureTextEntry ? (
                 <Feather name="eye-off" color="grey" size={20} />
               ) : (
                 <Feather name="eye" color="grey" size={20} />
@@ -232,13 +195,13 @@ const SignUpScreen = ({navigation}) => {
             <Feather name="lock" color="#05375a" size={20} />
             <TextInput
               placeholder="Confirm Your Password"
-              secureTextEntry={data.confirm_secureTextEntry ? true : false}
+              secureTextEntry={confirmSecureTextEntry ? true : false}
               style={styles.textInput}
               autoCapitalize="none"
               onChangeText={val => handleConfirmPasswordChange(val)}
             />
             <TouchableOpacity onPress={updateConfirmSecureTextEntry}>
-              {data.secureTextEntry ? (
+              {confirmSecureTextEntry ? (
                 <Feather name="eye-off" color="grey" size={20} />
               ) : (
                 <Feather name="eye" color="grey" size={20} />

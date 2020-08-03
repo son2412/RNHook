@@ -11,6 +11,7 @@ import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
+import com.reactcommunity.rndatetimepicker.RNDateTimePickerPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +32,8 @@ public class MainApplication extends Application implements ReactApplication {
                     new VectorIconsPackage(),
                     new RNGestureHandlerPackage(),
                     new AsyncStoragePackage(),
-                    new SafeAreaContextPackage()
+                    new SafeAreaContextPackage(),
+                    new RNDateTimePickerPackage()
             );
         }
 
