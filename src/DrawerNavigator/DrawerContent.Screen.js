@@ -18,6 +18,7 @@ import {myProfileRequest} from './MyProfile.Action';
 import {useDispatch, useSelector} from 'react-redux';
 import Images from '../../assets/images';
 import AsyncStorage from '@react-native-community/async-storage';
+import {signOut} from '../actions';
 
 const DrawerContentScreen = () => {
   const paperTheme = useTheme();
@@ -28,9 +29,9 @@ const DrawerContentScreen = () => {
   useEffect(() => {
     dispatch(myProfileRequest());
   }, [dispatch]);
-  const signOut = async () => {
+  const logOut = async () => {
     await AsyncStorage.removeItem('token');
-    navigation.navigate('SignIn', {})
+    dispatch(signOut());
   }
   return (
     <View style={{flex: 1}}>
@@ -162,7 +163,7 @@ const DrawerContentScreen = () => {
             <Icon name="exit-to-app" color={color} size={size} />
           )}
           label="Sign Out"
-          onPress={signOut}
+          onPress={logOut}
         />
       </Drawer.Section>
     </View>

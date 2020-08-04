@@ -17,6 +17,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useTheme} from 'react-native-paper';
 import {signInRequest} from './SignIn.Action';
 import AsyncStorage from '@react-native-community/async-storage';
+import {checkSignIn} from '../../actions';
 
 const SignInScreen = () => {
   const validateEmail = text => {
@@ -39,7 +40,7 @@ const SignInScreen = () => {
   useEffect(() => {
     if (signIn && signIn.success) {
       AsyncStorage.setItem('token', signIn.data.token);
-      navigation.navigate('Drawer', {});
+      dispatch(checkSignIn(signIn.data.token))
     }
     if (signIn && !signIn.success) {
       Alert.alert('Error !', signIn.message, [{text: 'Okay'}]);
@@ -203,7 +204,7 @@ const SignInScreen = () => {
           </Animatable.View>
         )}
 
-        <TouchableOpacity onPress={() => navigation.navigate('Drawer', {})}>
+        <TouchableOpacity>
           <Text style={{color: '#009387', marginTop: 15}}>
             Forgot password?
           </Text>

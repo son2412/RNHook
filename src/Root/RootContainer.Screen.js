@@ -1,23 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import styles from './RootContainer.Style';
-import {Keyboard, Platform, View} from 'react-native';
+import {Keyboard, Platform, View, ActivityIndicator} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import DetailProfileScreen from '../Containers/DetailProfile/DetailProfile.Screen';
 import DetailFollowerScreen from '../Containers/DetailFollower/DetailFollower.Screen';
 import DrawerNavigatorScreen from '../DrawerNavigator/DrawerNavigator.Screen';
-// import SignInScreen from '../Containers/SignIn/SignIn.Screen';
-import LogInScreen from '../Containers/SignIn/Login.Screen';
+// import LogInScreen from '../Containers/SignIn/Login.Screen';
 import Toast from 'react-native-simple-toast';
 import {useDispatch, useSelector} from 'react-redux';
-import {clearNetworkFail} from '../actions';
+import {clearNetworkFail, checkSignIn} from '../actions';
 import DetailChatScreen from '../Containers/DetailChat/DetailChat.Screen';
-import SignUpScreen from '../Containers/SignUp/SignUp.Screen';
+// import SignUpScreen from '../Containers/SignUp/SignUp.Screen';
+import RootStackScreen from './RootStack.Screen';
+import AsyncStorage from '@react-native-community/async-storage'
 
 const Stack = createStackNavigator();
 
 const RootContainerScreen = () => {
   const sendNetworkFail = useSelector(state => state.sendNetworkFail);
+  const isLogin = useSelector(state => state.isAuth);
   const [isKeyboardShow, setIsKeyboardShow] = useState(false);
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const dispatch = useDispatch();
@@ -62,41 +64,49 @@ const RootContainerScreen = () => {
     clearNetworkStatus();
   }
 
+  useEffect(() => {
+    setTimeout(async () => {
+      const token = await AsyncStorage.getItem('token');
+      dispatch(checkSignIn(token));
+    }, 1000);
+  }, []);
+
+  if(isLogin.fetching) {
+    return(
+      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+        <ActivityIndicator size="large"/>
+      </View>
+    );
+  }
   return (
     <View style={styles.mainContainer}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="SignIn" headerMode={'none'}>
-          <Stack.Screen
-            name="SignIn"
-            component={LogInScreen}
-            options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
-          />
-          <Stack.Screen
-            name="SignUp"
-            component={SignUpScreen}
-            options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
-          />
-          <Stack.Screen
-            name="Drawer"
-            component={DrawerNavigatorScreen}
-            options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
-          />
-          <Stack.Screen
-            name="DetailProfileScreen"
-            component={DetailProfileScreen}
-            options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
-          />
-          <Stack.Screen
-            name="DetailFollowerScreen"
-            component={DetailFollowerScreen}
-            options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
-          />
-          <Stack.Screen
-            name="DetailChatScreen"
-            component={DetailChatScreen}
-            options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
-          />
-        </Stack.Navigator>
+        {isLogin.token ? (
+          <Stack.Navigator initialRouteName="Drawer" headerMode={'none'}>
+            <Stack.Screen
+              name="Drawer"
+              component={DrawerNavigatorScreen}
+              options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
+            />
+            <Stack.Screen
+              name="DetailProfileScreen"
+              component={DetailProfileScreen}
+              options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
+            />
+            {/* <Stack.Screen
+              name="DetailFollowerScreen"
+              component={DetailFollowerScreen}
+              options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
+            /> */}
+            {/* <Stack.Screen
+              name="DetailChatScreen"
+              component={DetailChatScreen}
+              options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
+            /> */}
+          </Stack.Navigator>
+        ) : (
+          <RootStackScreen />
+        )}
       </NavigationContainer>
 
       {/*Keyboard padding*/}
