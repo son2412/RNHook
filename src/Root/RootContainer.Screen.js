@@ -13,7 +13,7 @@ import {clearNetworkFail, checkSignIn} from '../actions';
 import DetailChatScreen from '../Containers/DetailChat/DetailChat.Screen';
 // import SignUpScreen from '../Containers/SignUp/SignUp.Screen';
 import RootStackScreen from './RootStack.Screen';
-import AsyncStorage from '@react-native-community/async-storage'
+import AsyncStorage from '@react-native-community/async-storage';
 
 const Stack = createStackNavigator();
 
@@ -71,10 +71,10 @@ const RootContainerScreen = () => {
     }, 1000);
   }, []);
 
-  if(isLogin.fetching) {
-    return(
-      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-        <ActivityIndicator size="large"/>
+  if (isLogin.fetching) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator size="large" />
       </View>
     );
   }

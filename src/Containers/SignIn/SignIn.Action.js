@@ -1,6 +1,7 @@
 export const SIGNIN_REQUEST = 'SIGNIN_REQUEST';
 export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
 export const SIGNIN_FAIL = 'SIGNIN_FAIL';
+export const SIGNIN_INIT = 'SIGNIN_INIT';
 
 export const signInRequest = data => {
   return {type: SIGNIN_REQUEST, payload: data};
@@ -10,4 +11,8 @@ export const signInSuccess = data => {
 };
 export const signInFail = err => {
   return {type: SIGNIN_FAIL, payload: {err}};
+};
+
+export const signInInit = () => {
+  return {type: SIGNIN_INIT};
 };

@@ -155,15 +155,7 @@ const SignUpScreen = ({navigation}) => {
               </Animatable.View>
             ) : null}
           </View>
-          <Text
-            style={[
-              styles.text_footer,
-              {
-                marginTop: 10,
-              },
-            ]}>
-            Password
-          </Text>
+          <Text style={[styles.text_footer, {marginTop: 10}]}>Password</Text>
           <View style={styles.action}>
             <Feather name="lock" color="#05375a" size={20} />
             <TextInput
@@ -182,13 +174,7 @@ const SignUpScreen = ({navigation}) => {
             </TouchableOpacity>
           </View>
 
-          <Text
-            style={[
-              styles.text_footer,
-              {
-                marginTop: 10,
-              },
-            ]}>
+          <Text style={[styles.text_footer, {marginTop: 10}]}>
             Confirm Password
           </Text>
           <View style={styles.action}>
@@ -234,15 +220,7 @@ const SignUpScreen = ({navigation}) => {
                 },
               ]}
               onPress={() => {}}>
-              <Text
-                style={[
-                  styles.textSign,
-                  {
-                    color: '#fff',
-                  },
-                ]}>
-                Sign Up
-              </Text>
+              <Text style={[styles.textSign, {color: '#fff'}]}>Sign Up</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -255,15 +233,7 @@ const SignUpScreen = ({navigation}) => {
                   marginTop: 10,
                 },
               ]}>
-              <Text
-                style={[
-                  styles.textSign,
-                  {
-                    color: '#009387',
-                  },
-                ]}>
-                Sign In
-              </Text>
+              <Text style={[styles.textSign, {color: '#009387'}]}>Sign In</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
