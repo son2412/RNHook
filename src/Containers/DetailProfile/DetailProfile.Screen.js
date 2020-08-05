@@ -8,6 +8,7 @@ import {
   Image,
   TextInput,
   ScrollView,
+  Platform,
 } from 'react-native';
 import styles from './DetailProfile.Style';
 import colors from '../../Themes/Colors';
@@ -16,7 +17,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {useNavigation} from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import * as Animatable from 'react-native-animatable';
 import {useSelector} from 'react-redux';
 import moment from 'moment';
 import Images from '../../../assets/images';
@@ -66,9 +66,9 @@ const DetailProfileScreen = () => {
         />
         <TouchableOpacity
           style={styles.viewWrapIcLeft}
-          onPress={() => navigation.goBack()}>
+          onPress={() => navigation.openDrawer()}>
           <MaterialCommunityIcons
-            name={'arrow-left'}
+            name={'menu'}
             size={30}
             color={colors.white}
           />
@@ -107,7 +107,6 @@ const DetailProfileScreen = () => {
             ) : null}
           </View>
           <View style={styles.footer}>
-            {/* <Animatable.View animation="fadeInUpBig" style={styles.footer}> */}
             <ScrollView>
               <Text style={styles.text_footer}>FirstName</Text>
               <View style={styles.action}>
@@ -158,17 +157,26 @@ const DetailProfileScreen = () => {
               <Text style={[styles.text_footer, {marginTop: 15}]}>Birth</Text>
               <View style={styles.action}>
                 <FontAwesome name="calendar" color="#05375a" size={20} />
-                <TouchableOpacity
-                  disabled={!visible}
-                  onPress={() => setShow(true)}>
+                {Platform.OS === 'ios' ? (
                   <TextInput
                     defaultValue={birth}
                     style={styles.textInput}
                     autoCapitalize="none"
-                    // onTouchStart={() => setShow(true)}
+                    onTouchStart={() => visible ? setShow(true) : setShow(false)}
                     editable={false}
                   />
-                </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity
+                    disabled={!visible}
+                    onPress={() => setShow(true)}>
+                    <TextInput
+                      defaultValue={birth}
+                      style={styles.textInput}
+                      autoCapitalize="none"
+                      editable={false}
+                    />
+                  </TouchableOpacity>
+                )}
               </View>
               <DateTimePickerModal
                 date={new Date(birth)}

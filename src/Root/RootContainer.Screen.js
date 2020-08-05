@@ -3,15 +3,10 @@ import styles from './RootContainer.Style';
 import {Keyboard, Platform, View, ActivityIndicator} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import DetailProfileScreen from '../Containers/DetailProfile/DetailProfile.Screen';
-import DetailFollowerScreen from '../Containers/DetailFollower/DetailFollower.Screen';
 import DrawerNavigatorScreen from '../DrawerNavigator/DrawerNavigator.Screen';
-// import LogInScreen from '../Containers/SignIn/Login.Screen';
 import Toast from 'react-native-simple-toast';
 import {useDispatch, useSelector} from 'react-redux';
 import {clearNetworkFail, checkSignIn} from '../actions';
-import DetailChatScreen from '../Containers/DetailChat/DetailChat.Screen';
-// import SignUpScreen from '../Containers/SignUp/SignUp.Screen';
 import RootStackScreen from './RootStack.Screen';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -83,29 +78,18 @@ const RootContainerScreen = () => {
       <NavigationContainer>
         {isLogin.token ? (
           <Stack.Navigator initialRouteName="Drawer" headerMode={'none'}>
-            <Stack.Screen
-              name="Drawer"
-              component={DrawerNavigatorScreen}
-              options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
-            />
-            <Stack.Screen
-              name="DetailProfileScreen"
-              component={DetailProfileScreen}
-              options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
-            />
-            {/* <Stack.Screen
-              name="DetailFollowerScreen"
-              component={DetailFollowerScreen}
-              options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
-            /> */}
-            {/* <Stack.Screen
-              name="DetailChatScreen"
-              component={DetailChatScreen}
-              options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
-            /> */}
+            <>
+              <Stack.Screen
+                name="Drawer"
+                component={DrawerNavigatorScreen}
+                options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
+              />
+            </>
           </Stack.Navigator>
         ) : (
-          <RootStackScreen />
+          <>
+            <RootStackScreen />
+          </>
         )}
       </NavigationContainer>
 

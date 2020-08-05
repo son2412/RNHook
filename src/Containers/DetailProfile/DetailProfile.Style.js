@@ -30,7 +30,7 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 50,
     position: 'absolute',
-    left: '60%',
+    left: '58%',
     top: '62%',
     padding: 7,
   },

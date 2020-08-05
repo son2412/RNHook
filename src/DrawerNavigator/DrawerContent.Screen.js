@@ -48,7 +48,7 @@ const DrawerContentScreen = () => {
                 <Icon name="home-outline" color={color} size={size} />
               )}
               label="Home"
-              onPress={() => navigation.navigate('Home')}
+              onPress={() => navigation.navigate('ProfileScreen')}
             />
             <DrawerItem
               icon={({color, size}) => (
@@ -68,19 +68,19 @@ const DrawerContentScreen = () => {
               icon={({color, size}) => (
                 <Icon name="account-outline" color={color} size={size} />
               )}
-              label="Profile Dev"
-              onPress={() => navigation.navigate('ProfileScreen')}
+              label="Followers"
+              onPress={() => navigation.navigate('FollowerScreen')}
             />
-            {/* <DrawerItem
+            <DrawerItem
               icon={({color, size}) => (
                 <Icon name="bookmark-outline" color={color} size={size} />
               )}
               label="Bookmarks"
               onPress={() => {
-                navigation.navigate('BookmarkScreen');
+                navigation.navigate('CounterScreen');
               }}
             />
-            <DrawerItem
+            {/* <DrawerItem
               icon={({color, size}) => (
                 <Icon name="settings-outline" color={color} size={size} />
               )}

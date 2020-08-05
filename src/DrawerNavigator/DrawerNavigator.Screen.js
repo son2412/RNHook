@@ -8,6 +8,7 @@ import styles from './DrawerNavigator.Style';
 import CounterScreen from '../Containers/Counter/Counter.Screen';
 import {SafeAreaView} from 'react-native';
 import DrawerContentScreen from './DrawerContent.Screen';
+import DetailProfileScreen from '../Containers/DetailProfile/DetailProfile.Screen';
 
 const Drawer = createDrawerNavigator();
 
@@ -25,6 +26,11 @@ const DrawerNavigatorScreen = () => {
             name="ProfileScreen"
             component={ProfileScreen}
             options={{drawerLabel: 'Profile'}}
+          />
+          <Drawer.Screen
+            name="DetailProfileScreen"
+            component={DetailProfileScreen}
+            options={{drawerLabel: 'DetailProfileScreen'}}
           />
           <Drawer.Screen
             name="Chats"

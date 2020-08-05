@@ -6,6 +6,7 @@ import {
   TextInput,
   ScrollView,
   StatusBar,
+  Platform,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -116,15 +117,26 @@ const SignUpScreen = ({navigation}) => {
           <Text style={[styles.text_footer, {marginTop: 15}]}>Birth</Text>
           <View style={styles.action}>
             <FontAwesome name="calendar" color="#05375a" size={20} />
-            <TouchableOpacity onPress={() => setShow(true)}>
+            {Platform.OS === 'ios' ? (
               <TextInput
                 placeholder="Your Birth"
                 style={styles.textInput}
                 autoCapitalize="none"
-                // onTouchStart={() => setShow(true)}
+                onTouchStart={() => setShow(true)}
                 editable={false}
+                value={birth}
               />
-            </TouchableOpacity>
+            ) : (
+              <TouchableOpacity onPress={() => setShow(true)}>
+                <TextInput
+                  placeholder="Your Birth"
+                  style={styles.textInput}
+                  autoCapitalize="none"
+                  editable={false}
+                  value={birth}
+                />
+              </TouchableOpacity>
+            )}
             {birth ? (
               <Animatable.View animation="bounceIn">
                 <Feather name="check-circle" color="green" size={20} />
@@ -142,16 +154,16 @@ const SignUpScreen = ({navigation}) => {
             <FontAwesome name="transgender" color="#05375a" size={20} />
             <View style={styles.view_gender}>
               <TouchableOpacity onPress={() => setGender(1)}>
-                <Text style={styles.element_gender}>Male</Text>
+                <Text style={[styles.element_gender, gender === 1 ? {color: 'green'} : null]}>Male</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => setGender(1)}>
-                <Text style={styles.element_gender}>Female</Text>
+              <TouchableOpacity onPress={() => setGender(2)}>
+                <Text style={[styles.element_gender, gender === 2 ? {color: 'green'} : null]}>Female</Text>
               </TouchableOpacity>
             </View>
 
             {gender ? (
               <Animatable.View animation="bounceIn">
-                <Feather name="check-circle" color="green" size={20} />
+                <Feather name="check-circle" color="green" size={20} style={{marginLeft: '60%'}} />
               </Animatable.View>
             ) : null}
           </View>
