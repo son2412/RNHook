@@ -9,6 +9,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {clearNetworkFail, checkSignIn} from '../actions';
 import RootStackScreen from './RootStack.Screen';
 import AsyncStorage from '@react-native-community/async-storage';
+import DetailChatScreen from '../Containers/DetailChat/DetailChat.Screen';
+import DetailFollowerScreen from '../Containers/DetailFollower/DetailFollower.Screen';
 
 const Stack = createStackNavigator();
 
@@ -82,6 +84,16 @@ const RootContainerScreen = () => {
               <Stack.Screen
                 name="Drawer"
                 component={DrawerNavigatorScreen}
+                options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
+              />
+              <Stack.Screen
+                name="DetailChatScreen"
+                component={DetailChatScreen}
+                options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
+              />
+              <Stack.Screen
+                name="DetailFollowerScreen"
+                component={DetailFollowerScreen}
                 options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
               />
             </>

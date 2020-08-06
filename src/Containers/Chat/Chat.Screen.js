@@ -54,8 +54,8 @@ const ChatScreen = () => {
           <Tab.Navigator>
             <Tab.Screen name="Message" component={ListChatScreen} />
             <Tab.Screen name="Active" component={ActiveScreen} />
-            {/* <Tab.Screen name="Call" component={CallScreen} />
-            <Tab.Screen name="Group" component={GroupScreen} /> */}
+            <Tab.Screen name="Call" component={CallScreen} />
+            <Tab.Screen name="Group" component={GroupScreen} />
           </Tab.Navigator>
         </View>
       </SafeAreaView>
