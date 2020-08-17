@@ -162,7 +162,9 @@ const DetailProfileScreen = () => {
                     defaultValue={birth}
                     style={styles.textInput}
                     autoCapitalize="none"
-                    onTouchStart={() => visible ? setShow(true) : setShow(false)}
+                    onTouchStart={() =>
+                      visible ? setShow(true) : setShow(false)
+                    }
                     editable={false}
                   />
                 ) : (
@@ -213,15 +215,14 @@ const DetailProfileScreen = () => {
                   </TouchableOpacity>
                 </View>
               </View>
-              {visible ? (
-                <View style={styles.bodyContent}>
-                  <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={handleSave}>
-                    <Text>Save</Text>
-                  </TouchableOpacity>
-                </View>
-              ) : null}
+              <View style={styles.bodyContent}>
+                <TouchableOpacity
+                  disabled={!visible}
+                  style={styles.buttonContainer}
+                  onPress={handleSave}>
+                  <Text>Save</Text>
+                </TouchableOpacity>
+              </View>
             </ScrollView>
           </View>
           {/* </Animatable.View> */}

@@ -16,7 +16,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import AppStyles from '../../styles';
 import {GiftedChat, Send} from 'react-native-gifted-chat';
 
-const DetailChatScreen = () => {
+const DetailChatScreen = props => {
   const [messages, setMessages] = useState([]);
   const navigation = useNavigation();
   const onPress = () => {};
@@ -58,7 +58,7 @@ const DetailChatScreen = () => {
           />
         </TouchableOpacity>
         <View style={styles.viewWrapTitleToolbar}>
-          <Text style={styles.titleToolbar}>Rikky</Text>
+          <Text style={styles.titleToolbar}>{props.route.params.group_name}</Text>
         </View>
         <View style={styles.viewWrapIcRight}>
           <TouchableRipple

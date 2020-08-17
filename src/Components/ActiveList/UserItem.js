@@ -4,9 +4,10 @@ import {TouchableRipple, Text} from 'react-native-paper';
 import Avatar from '../Avatar/Avatar';
 import Images from '../../../assets/images';
 import styles from './style';
+import { chatWith } from '../../Api/groupApi';
 
 const UserItem = ({item}) => {
-  const {first_name, last_name, image} = item;
+  const {id, first_name, last_name, image} = item;
   const onPress = () => {
     Alert.alert('Clicked ');
   };
