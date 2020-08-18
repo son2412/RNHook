@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import ChatList from '../../Components/ChatList/ChatList';
 import {useDispatch, useSelector} from 'react-redux';
 import {listChatRequest} from './ListChat.Acion';
+import {listChatWithRequest} from '../../Redux/Actions/ListChatWith.Action';
 
 const page_size = 20;
 const ListChatScreen = () => {
@@ -17,10 +18,11 @@ const ListChatScreen = () => {
   const totalPage = useSelector(state => state.getListGroup.totalPage);
   useEffect(() => {
     dispatch(listChatRequest({page_index: page, page_size}));
+    dispatch(listChatWithRequest({}));
   }, [dispatch]);
 
   useEffect(() => {
-      setData([...data, ...listGroup]);
+    setData([...data, ...listGroup]);
   }, [listGroup]);
 
   const fetchData = page_index => {

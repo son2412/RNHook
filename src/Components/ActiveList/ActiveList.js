@@ -35,7 +35,9 @@ const ActiveList = ({data, loading, page, setPage, fetchData, totalPage}) => {
       renderItem={renderItem}
       keyExtractor={(item, index) => `${item.id}`}
       onEndReachedThreshold={0.4}
-      ListFooterComponent={totalPage > 0 && page <= totalPage ? renderFooter : null}
+      ListFooterComponent={
+        totalPage > 0 && page <= totalPage ? renderFooter : null
+      }
       onEndReached={totalPage > 0 && page <= totalPage && handleLoadMore}
     />
   );

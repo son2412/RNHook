@@ -58,7 +58,9 @@ const DetailChatScreen = props => {
           />
         </TouchableOpacity>
         <View style={styles.viewWrapTitleToolbar}>
-          <Text style={styles.titleToolbar}>{props.route.params.group_name}</Text>
+          <Text style={styles.titleToolbar}>
+            {props.route.params.group.name}
+          </Text>
         </View>
         <View style={styles.viewWrapIcRight}>
           <TouchableRipple

@@ -5,6 +5,7 @@ import {watchSignIn} from './Containers/SignIn/SignIn.Saga';
 import {watchGetUserActive} from './Containers/Active/Active.Saga';
 import {watchGetListGroup} from './Containers/ListChat/ListChat.Saga';
 import {watchGetMyProfile} from './DrawerNavigator/MyProfile.Saga';
+import {watchListChatWith} from './Redux/Sagas/ListChatWith.Saga';
 
 export default function* rootSaga() {
   yield all([
@@ -14,5 +15,6 @@ export default function* rootSaga() {
     watchGetUserActive(),
     watchGetListGroup(),
     watchGetMyProfile(),
+    watchListChatWith(),
   ]);
 }
