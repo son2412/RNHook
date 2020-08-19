@@ -12,14 +12,17 @@ const ChatItem = ({item}) => {
   const navigation = useNavigation();
   const profile = useSelector(state => state.getMyProfile.data);
   const onPress = () => {
-    navigation.navigate('DetailChatScreen', {group: item});
+    navigation.navigate('DetailChatScreen', {
+      group: item,
+      group_name: renderItem().name,
+    });
   };
   const renderItem = () => {
     if (item.type === TYPE_SINGLE) {
       const find = item.users.find(x => x.id !== profile.id);
       return {
         name: `${find.first_name} ${find.last_name}`,
-        avatar: find.image.url,
+        avatar: find.image ? find.image.url : null,
       };
     }
     if (item.type === TYPE_GROUP) {

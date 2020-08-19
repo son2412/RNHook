@@ -14,7 +14,7 @@ import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AppStyles from '../../styles';
-import {GiftedChat, Send} from 'react-native-gifted-chat';
+import {GiftedChat} from 'react-native-gifted-chat';
 
 const DetailChatScreen = props => {
   const [messages, setMessages] = useState([]);
@@ -59,7 +59,7 @@ const DetailChatScreen = props => {
         </TouchableOpacity>
         <View style={styles.viewWrapTitleToolbar}>
           <Text style={styles.titleToolbar}>
-            {props.route.params.group.name}
+            {props.route.params.group_name}
           </Text>
         </View>
         <View style={styles.viewWrapIcRight}>
@@ -84,27 +84,27 @@ const DetailChatScreen = props => {
     );
   };
 
-  const renderAction = () => {
-    return (
-      <TouchableRipple
-        onPress={onPress}
-        style={styles.icon}
-        rippleColor="rgba(0, 0, 0, .32)">
-        <Icon size={24} color={AppStyles.colors.accentColor} name="image" />
-      </TouchableRipple>
-    );
-  };
+  // const renderAction = () => {
+  //   return (
+  //     <TouchableRipple
+  //       onPress={onPress}
+  //       style={styles.icon}
+  //       rippleColor="rgba(0, 0, 0, .32)">
+  //       <Icon size={24} color={AppStyles.colors.accentColor} name="image" />
+  //     </TouchableRipple>
+  //   );
+  // };
 
-  const renderSend = () => {
-    return (
-      <TouchableRipple
-        onPress={onPress}
-        style={styles.icon}
-        rippleColor="rgba(0, 0, 0, .32)">
-        <Icon size={24} color={AppStyles.colors.accentColor} name="image" />
-      </TouchableRipple>
-    );
-  };
+  // const renderSend = () => {
+  //   return (
+  //     <TouchableRipple
+  //       onPress={onPress}
+  //       style={styles.icon}
+  //       rippleColor="rgba(0, 0, 0, .32)">
+  //       <Icon size={24} color={AppStyles.colors.accentColor} name="image" />
+  //     </TouchableRipple>
+  //   );
+  // };
 
   return (
     <Fragment>
@@ -113,7 +113,7 @@ const DetailChatScreen = props => {
           {renderToolbar()}
           <GiftedChat
             messages={messages}
-            onSend={messages => onSend(messages)}
+            onSend={text => onSend(text)}
             user={{
               _id: 1,
             }}
