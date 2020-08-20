@@ -11,10 +11,10 @@ import RootContainer from './src/Root/RootContainer.Screen';
 import 'react-native-gesture-handler';
 import {createLogger} from 'redux-logger';
 import firebase from 'firebase';
-import config from './src/config';
+import configs from './src/config';
 
 if (firebase.apps.length === 0) {
-  firebase.initializeApp(config.firebase);
+  firebase.initializeApp(configs.firebase);
 }
 
 const sagaMiddleware = createSagaMiddleware();

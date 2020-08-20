@@ -15,24 +15,34 @@ import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AppStyles from '../../styles';
 import {GiftedChat} from 'react-native-gifted-chat';
+import configs from '../../config';
+import firebase from 'firebase';
+import 'firebase/firestore';
+
+firebase.initializeApp(configs.firebase);
+const db = firebase.firestore();
 
 const DetailChatScreen = props => {
+  console.log(firebase);
+  const {group_name, group} = props.route.params;
+  const chatRef = db.collection('chats');
+  console.log(chatRef);
   const [messages, setMessages] = useState([]);
   const navigation = useNavigation();
   const onPress = () => {};
   useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: 'Hello developer',
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any',
-        },
-      },
-    ]);
+    // setMessages([
+    //   {
+    //     _id: 1,
+    //     text: 'Hello developer',
+    //     createdAt: new Date(),
+    //     user: {
+    //       _id: 2,
+    //       name: 'React Native',
+    //       avatar: 'https://placeimg.com/140/140/any',
+    //     },
+    //   },
+    // ]);
   }, []);
   const onSend = useCallback((message = []) => {
     setMessages(previousMessages =>
@@ -58,9 +68,7 @@ const DetailChatScreen = props => {
           />
         </TouchableOpacity>
         <View style={styles.viewWrapTitleToolbar}>
-          <Text style={styles.titleToolbar}>
-            {props.route.params.group_name}
-          </Text>
+          <Text style={styles.titleToolbar}>{group_name}</Text>
         </View>
         <View style={styles.viewWrapIcRight}>
           <TouchableRipple
@@ -116,8 +124,9 @@ const DetailChatScreen = props => {
             onSend={text => onSend(text)}
             user={{
               _id: 1,
+              name: 'son',
             }}
-            placeholder={'Type a message...'}
+            placeholder={'Typing a message...'}
             alwaysShowSend={true}
             isKeyboardInternallyHandled={false}
             // renderActions={renderAction}
