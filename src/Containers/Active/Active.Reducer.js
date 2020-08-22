@@ -7,7 +7,7 @@ export const getUserActive = (state = initialState, action) => {
     case ACTIVE_REQUEST:
       return {
         fetching: true,
-        data: [],
+        data: state.data,
         err: null,
         totalPage: 0,
       };

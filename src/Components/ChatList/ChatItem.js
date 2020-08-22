@@ -15,6 +15,7 @@ const ChatItem = ({item}) => {
     navigation.navigate('DetailChatScreen', {
       group: item,
       group_name: renderItem().name,
+      user_id: profile.id
     });
   };
   const renderItem = () => {

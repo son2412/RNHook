@@ -19,6 +19,10 @@ const ActiveScreen = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleLoad = (page) => {
+    dispatch(activeRequest({page_index: page, page_size}));
+  };
+
   return (
     <Fragment>
       <SafeAreaView style={{flex: 1}}>
@@ -32,6 +36,7 @@ const ActiveScreen = () => {
               page={page}
               setPage={setPage}
               totalPage={totalPage}
+              loadMore={handleLoad}
             />
           </View>
         )}
