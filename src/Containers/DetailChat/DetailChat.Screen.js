@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 import styles from './DetailChat.Style';
 import colors from '../../Themes/Colors';
@@ -15,30 +16,47 @@ import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AppStyles from '../../styles';
 import {GiftedChat} from 'react-native-gifted-chat';
+import {Firebase} from '../../const';
+import {useDispatch} from 'react-redux';
+import {sendMessageRequest} from '../../Redux/Actions/SendMessage.Action';
 
 const DetailChatScreen = props => {
+  const dispatch = useDispatch();
+  const {group_name, group, user_id} = props.route.params;
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
   const onPress = () => {};
   useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: 'Hello developer',
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any',
-        },
-      },
-    ]);
-  }, []);
-  const onSend = useCallback((message = []) => {
-    setMessages(previousMessages =>
-      GiftedChat.append(previousMessages, message),
-    );
-  }, []);
+    setLoading(true);
+    Firebase.database()
+      .ref('chats/' + group.id)
+      .on('value', snap => {
+        let items = [];
+        let item = {};
+        snap.forEach(child => {
+          const childItem = child.val();
+          const user = group.users.find(x => childItem.sender_id === x.id);
+          item = {
+            _id: childItem.id,
+            text: childItem.message,
+            createdAt: childItem.created_at || new Date(),
+            user: {
+              _id: user.id,
+              name: user.first_name + ' ' + user.last_name,
+              avatar: user.image ? user.image.url : null,
+            },
+          };
+          items.push(item);
+        });
+        setMessages(items.sort((a, b) => b._id - a._id));
+        setLoading(false);
+      });
+    // return function cleanup() {};
+  }, [group]);
+  const onSend = text => {
+    dispatch(sendMessageRequest({group_id: group.id, message: text[0].text}));
+  };
 
   const renderToolbar = () => {
     return (
@@ -58,9 +76,7 @@ const DetailChatScreen = props => {
           />
         </TouchableOpacity>
         <View style={styles.viewWrapTitleToolbar}>
-          <Text style={styles.titleToolbar}>
-            {props.route.params.group_name}
-          </Text>
+          <Text style={styles.titleToolbar}>{group_name}</Text>
         </View>
         <View style={styles.viewWrapIcRight}>
           <TouchableRipple
@@ -111,18 +127,22 @@ const DetailChatScreen = props => {
       <SafeAreaView style={{flex: 1}}>
         <View style={styles.mainContainer}>
           {renderToolbar()}
-          <GiftedChat
-            messages={messages}
-            onSend={text => onSend(text)}
-            user={{
-              _id: 1,
-            }}
-            placeholder={'Type a message...'}
-            alwaysShowSend={true}
-            isKeyboardInternallyHandled={false}
-            // renderActions={renderAction}
-            // renderSend={renderSend}
-          />
+          {loading ? (
+            <ActivityIndicator size="large" />
+          ) : (
+            <GiftedChat
+              messages={messages}
+              onSend={text => onSend(text)}
+              user={{
+                _id: user_id,
+              }}
+              placeholder={'Typing a message...'}
+              alwaysShowSend={true}
+              isKeyboardInternallyHandled={false}
+              // renderActions={renderAction}
+              // renderSend={renderSend}
+            />
+          )}
         </View>
       </SafeAreaView>
     </Fragment>

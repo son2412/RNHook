@@ -1,40 +1,32 @@
-import React, {useState} from 'react';
-import {FlatList, RefreshControl, ActivityIndicator} from 'react-native';
+import React from 'react';
+import {FlatList, ActivityIndicator} from 'react-native';
 import UserItem from './UserItem';
 
-const ActiveList = ({data, loading, page, setPage, fetchData, totalPage}) => {
-  const [refreshing, setRefreshing] = useState(false);
+const ActiveList = ({data, loading, page, setPage, totalPage, loadMore}) => {
   const renderItem = ({item}) => {
     return <UserItem item={item} />;
   };
 
   const renderFooter = () => {
-    if (!loading) return null;
+    if (!loading) {
+      return null;
+    }
     return <ActivityIndicator style={{color: '#000'}} />;
   };
 
   const handleLoadMore = () => {
     if (!loading) {
       setPage(page + 1);
-      // fetchData(page);
+      loadMore(page + 1);
     }
-  };
-
-  const onRefresh = () => {
-    setRefreshing(true);
-    fetchData(1);
-    setRefreshing(false);
   };
 
   return (
     <FlatList
       data={data}
-      // refreshControl={
-      //   <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      // }
       renderItem={renderItem}
       keyExtractor={(item, index) => `${item.id}`}
-      onEndReachedThreshold={0.4}
+      onEndReachedThreshold={0.5}
       ListFooterComponent={
         totalPage > 0 && page <= totalPage ? renderFooter : null
       }

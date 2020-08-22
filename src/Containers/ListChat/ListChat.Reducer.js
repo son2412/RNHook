@@ -18,7 +18,7 @@ export const getListGroup = (state = initialState, action) => {
     case LIST_GROUP_SUCCESS:
       return {
         fetching: false,
-        data: action.payload.data.data,
+        data: [...state.data, ...action.payload.data.data],
         err: null,
         totalPage: action.payload.data.totalPage,
       };

@@ -1,3 +1,5 @@
+import firebase from 'firebase';
+import configs from './config';
 export const barStyle = {
   darkContent: 'dark-content',
   lightContent: 'light-content',
@@ -13,3 +15,5 @@ export const fontFamily = {
   demiBold: 'iCielVAGRoundedNext-DemiBold',
   lightItalic: 'iCielVAGRoundedNext-LightItalic',
 };
+
+export const Firebase = firebase.initializeApp(configs.firebase);

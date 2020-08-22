@@ -65,7 +65,7 @@ const RootContainerScreen = () => {
     setTimeout(async () => {
       const token = await AsyncStorage.getItem('token');
       dispatch(checkSignIn(token));
-    }, 1000);
+    }, 10);
   }, []);
 
   if (isLogin.fetching) {

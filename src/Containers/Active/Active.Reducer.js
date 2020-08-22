@@ -7,14 +7,14 @@ export const getUserActive = (state = initialState, action) => {
     case ACTIVE_REQUEST:
       return {
         fetching: true,
-        data: [],
+        data: state.data,
         err: null,
-        totalPage: 0
+        totalPage: 0,
       };
     case ACTIVE_SUCCESS:
       return {
         fetching: false,
-        data: action.payload.data.data,
+        data: [...state.data, ...action.payload.data.data],
         err: null,
         totalPage: action.payload.data.totalPage,
       };
@@ -23,7 +23,7 @@ export const getUserActive = (state = initialState, action) => {
         fetching: false,
         data: [],
         err: action.payload.err,
-        totalPage: 0
+        totalPage: 0,
       };
     default:
       return state;
