@@ -19,6 +19,7 @@ import {GiftedChat} from 'react-native-gifted-chat';
 import {Firebase} from '../../const';
 import {useDispatch} from 'react-redux';
 import {sendMessageRequest} from '../../Redux/Actions/SendMessage.Action';
+import requestCameraAndAudioPermission from '../../permission';
 
 const MESSAGE_TYPE_TEXT = 1;
 const MESSAGE_TYPE_IMAGE = 2;
@@ -28,7 +29,16 @@ const DetailChatScreen = props => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
-  const onPress = () => {};
+  const onPress = () => {
+    navigation.navigate('VideoCallScreen', {
+      channelName: group.id,
+    });
+  };
+  if (Platform.OS === 'android') {
+    requestCameraAndAudioPermission().then(_ => {
+      console.log('requested!');
+    });
+  }
   useEffect(() => {
     setLoading(true);
     Firebase.database()
@@ -57,7 +67,13 @@ const DetailChatScreen = props => {
     // return function cleanup() {};
   }, [group]);
   const onSend = text => {
-    dispatch(sendMessageRequest({group_id: group.id, message: text[0].text, type: MESSAGE_TYPE_TEXT}));
+    dispatch(
+      sendMessageRequest({
+        group_id: group.id,
+        message: text[0].text,
+        type: MESSAGE_TYPE_TEXT,
+      }),
+    );
   };
 
   const renderToolbar = () => {

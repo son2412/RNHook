@@ -9,6 +9,12 @@ const configs = {
     messagingSenderId: '535909429783',
     appId: '1:535909429783:web:3323de1f1bb4ee0ffde252',
   },
+  agora: {
+    appId: '1c3838edb6554362b000d051711bd709',
+    appCertificate: '6c453d3a12c140db9ecad72f51e6469b',
+    custommerId: 'e15d63bf02e84a16a355a2bb23d0a7ec',
+    customerCertificate: 'a03936e601e1400fbfec88753fef1ec6',
+  },
 };
 
 export default configs;
