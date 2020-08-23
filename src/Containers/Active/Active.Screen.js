@@ -27,7 +27,7 @@ const ActiveScreen = () => {
     <Fragment>
       <SafeAreaView style={{flex: 1}}>
         {fetching && page === 1 ? (
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size="small" />
         ) : (
           <View style={styles.mainContainer}>
             <ActiveList

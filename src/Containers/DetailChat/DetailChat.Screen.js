@@ -20,6 +20,8 @@ import {Firebase} from '../../const';
 import {useDispatch} from 'react-redux';
 import {sendMessageRequest} from '../../Redux/Actions/SendMessage.Action';
 
+const MESSAGE_TYPE_TEXT = 1;
+const MESSAGE_TYPE_IMAGE = 2;
 const DetailChatScreen = props => {
   const dispatch = useDispatch();
   const {group_name, group, user_id} = props.route.params;
@@ -55,7 +57,7 @@ const DetailChatScreen = props => {
     // return function cleanup() {};
   }, [group]);
   const onSend = text => {
-    dispatch(sendMessageRequest({group_id: group.id, message: text[0].text}));
+    dispatch(sendMessageRequest({group_id: group.id, message: text[0].text, type: MESSAGE_TYPE_TEXT}));
   };
 
   const renderToolbar = () => {
@@ -128,7 +130,7 @@ const DetailChatScreen = props => {
         <View style={styles.mainContainer}>
           {renderToolbar()}
           {loading ? (
-            <ActivityIndicator size="large" />
+            <ActivityIndicator size="small" />
           ) : (
             <GiftedChat
               messages={messages}

@@ -11,7 +11,7 @@ const ChatList = ({data, loading, page, setPage, totalPage}) => {
     if (!loading) {
       return null;
     }
-    return <ActivityIndicator style={{color: '#000'}} />;
+    return <ActivityIndicator size="small" style={{color: '#000'}} />;
   };
 
   const handleLoadMore = () => {

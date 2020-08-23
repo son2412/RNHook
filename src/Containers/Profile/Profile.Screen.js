@@ -75,7 +75,7 @@ const ProfileScreen = () => {
     if (profile.fetching) {
       return (
         <View style={styles.viewLoading}>
-          <ActivityIndicator />
+          <ActivityIndicator size="small" />
         </View>
       );
     } else {

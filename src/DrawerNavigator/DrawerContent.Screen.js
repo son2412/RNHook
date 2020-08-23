@@ -37,7 +37,7 @@ const DrawerContentScreen = () => {
       <DrawerContentScrollView>
         <View style={styles.drawerContent}>
           {fetching ? (
-            <ActivityIndicator size="large" />
+            <ActivityIndicator size="small" />
           ) : (
             <DrawerProfile profile={profile} />
           )}

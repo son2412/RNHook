@@ -25,7 +25,7 @@ const ListChatScreen = () => {
     <Fragment>
       <SafeAreaView style={{flex: 1}}>
         {fetching ? (
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size="small" />
         ) : (
           <View style={styles.mainContainer}>
             <ChatList

@@ -52,7 +52,7 @@ const FollowerScreen = () => {
     if (listFollower.fetching) {
       return (
         <View style={styles.viewLoading}>
-          <ActivityIndicator />
+          <ActivityIndicator size="small" />
         </View>
       );
     } else {

@@ -8,6 +8,7 @@ import {CLEAR_NETWORK_FAIL, SEND_NETWORK_FAIL, RETRIEVE_TOKEN, SIGN_OUT} from '.
 import {getMyProfile} from './DrawerNavigator/MyProfile.Reducer';
 import {listChatWith} from '../src/Redux/Reducers/ListChatWith.Reducer';
 import {sendMessage} from '../src/Redux/Reducers/SendMessage.Reducer';
+import {createChatWith} from '../src/Redux/Reducers/CreateChatWith.Reducer';
 
 const initialState = {fetching: false, data: null, err: null};
 
@@ -54,5 +55,6 @@ const rootReducer = combineReducers({
   getMyProfile,
   listChatWith,
   sendMessage,
+  createChatWith,
 });
 export default rootReducer;
