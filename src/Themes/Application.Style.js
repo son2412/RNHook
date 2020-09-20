@@ -58,6 +58,14 @@ const ApplicationStyle = StyleSheet.create({
     height: 0.5,
     alignSelf: 'stretch',
   },
+  viewWrap1IcRight: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingVertical: 8,
+    // paddingHorizontal: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default ApplicationStyle;
