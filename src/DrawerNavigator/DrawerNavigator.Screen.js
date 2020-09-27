@@ -1,5 +1,5 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import ProfileScreen from '../Containers/Profile/Profile.Screen';
+import TopicScreen from '../Containers/Topic/Topic.Screen';
 import FollowerScreen from '../Containers/Follower/Follower.Screen';
 import ChatScreen from '../Containers/Chat/Chat.Screen';
 import React, {Fragment} from 'react';
@@ -23,9 +23,9 @@ const DrawerNavigatorScreen = () => {
             labelStyle: styles.textItemMenu,
           }}>
           <Drawer.Screen
-            name="ProfileScreen"
-            component={ProfileScreen}
-            options={{drawerLabel: 'Profile'}}
+            name="TopicScreen"
+            component={TopicScreen}
+            options={{drawerLabel: 'Topic'}}
           />
           <Drawer.Screen
             name="DetailProfileScreen"

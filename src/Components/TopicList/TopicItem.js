@@ -3,14 +3,27 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import Avatar from '../Avatar/Avatar';
 import styles from './style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Swiper from 'react-native-swiper';
 
 const TopicItem = ({ item }) => {
+  const renderPagination = (index, total, context) => {
+    return (
+      <View style={styles.paginationStyle}>
+        <Text style={{ color: 'grey' }}>
+          <Text style={styles.paginationText}>{index + 1}</Text>/{total}
+        </Text>
+      </View>
+    );
+  };
   return (
     <View style={{ marginVertical: 3, marginBottom: 10 }}>
       <View style={styles.userBar}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Avatar uri={item.userAvatar} enableDot />
-          <Text style={{ marginLeft: 10, fontSize: 16 }}>{item.userName}</Text>
+          <View style={{ marginLeft: 10 }}>
+            <Text style={{ fontSize: 16 }}>{item.userName}</Text>
+            <Text style={{ fontSize: 14, paddingTop: 4 }}>{'30 minutes'}</Text>
+          </View>
         </View>
         <View>
           <TouchableOpacity onPress={() => console.log('action')}>
@@ -18,9 +31,14 @@ const TopicItem = ({ item }) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View>
+      <View style={{ height: 500 }}>
         <Text style={{ marginStart: 10, marginVertical: 10, fontSize: 16 }}>{item.title}</Text>
-        <Image style={styles.picture} source={{ uri: item.userAvatar }} />
+        <Swiper renderPagination={renderPagination}>
+          {item.images.map((i, index) => (
+            <Image key={index + 1} style={styles.picture} source={{ uri: i.url }} />
+          ))}
+        </Swiper>
+
         <View style={styles.iconBar}>
           <Icon name="heart-outline" size={30} style={{ marginStart: 10 }} onPress={() => console.log('liked')} />
           <Icon name="chat-outline" size={30} style={{ marginStart: 10 }} onPress={() => console.log('comment')} />

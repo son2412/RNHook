@@ -11,10 +11,6 @@ export const api = apisauce.create({
   timeout: 15000,
 });
 
-export const getProfile = body => {
-  return api_git.get(`users/${body.username}`);
-};
-
 export const getFollower = body => {
   return api_git.get(`users/${body.username}/followers`);
 };

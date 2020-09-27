@@ -48,7 +48,7 @@ const DrawerContentScreen = () => {
                 <Icon name="home-outline" color={color} size={size} />
               )}
               label="Home"
-              onPress={() => navigation.navigate('ProfileScreen')}
+              onPress={() => navigation.navigate('TopicScreen')}
             />
             <DrawerItem
               icon={({color, size}) => (

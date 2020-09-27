@@ -1,5 +1,5 @@
 import {all} from 'redux-saga/effects';
-import {watchGetProfile} from './Containers/Profile/Profile.Saga';
+import {watchGetTopic} from './Containers/Topic/Topic.Saga';
 import {watchGetFollower} from './Containers/Follower/Follower.Saga';
 import {watchSignIn} from './Containers/SignIn/SignIn.Saga';
 import {watchGetUserActive} from './Containers/Active/Active.Saga';
@@ -11,7 +11,7 @@ import {watchCreateChatWith} from './Redux/Sagas/CreateChatWith.Saga';
 
 export default function* rootSaga() {
   yield all([
-    watchGetProfile(),
+    watchGetTopic(),
     watchGetFollower(),
     watchSignIn(),
     watchGetUserActive(),

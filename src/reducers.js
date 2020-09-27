@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {getProfile} from './Containers/Profile/Profile.Reducer';
+import {getTopic} from './Containers/Topic/Topic.Reducer';
 import {getFollower} from './Containers/Follower/Follower.Reducer';
 import {signIn} from './Containers/SignIn/SignIn.Reducer';
 import {getUserActive} from './Containers/Active/Active.Reducer';
@@ -47,7 +47,7 @@ const isAuth = (state = initialStateAuth, action) => {
 const rootReducer = combineReducers({
   sendNetworkFail,
   isAuth,
-  getProfile,
+  getTopic,
   getFollower,
   signIn,
   getUserActive,

@@ -1,24 +1,19 @@
 import React from 'react';
 import { ActivityIndicator, Image, StatusBar, Text, TouchableOpacity, View } from 'react-native';
-import styles from './Profile.Style';
+import styles from './Topic.Style';
 import colors from '../../Themes/Colors';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { barStyle } from '../../const';
 import { useDispatch, useSelector } from 'react-redux';
 import NoDataView from '../../Components/NoDataView';
-import { getProfileRequest } from './Profile.Action';
+import { getTopicRequest } from './Topic.Action';
 import { useNavigation } from '@react-navigation/native';
 import TopicList from '../../Components/TopicList/TopicList';
 
-const ProfileScreen = () => {
+const TopicScreen = () => {
   const navigation = useNavigation();
-  const profile = useSelector(state => state.getProfile);
+  const topics = useSelector(state => state.getTopic);
   const dispatch = useDispatch();
-  const getProfile = () => dispatch(getProfileRequest('son2412'));
-
-  const goDetailScreen = () => {
-    navigation.navigate('DetailProfileScreen', {});
-  };
 
   const renderToolbar = () => {
     return (
@@ -38,24 +33,17 @@ const ProfileScreen = () => {
   };
 
   const renderDataView = () => {
-    if (profile.data) {
-      return (
-        <View style={styles.body}>
-          <Image style={styles.avatar} source={{ uri: profile.data.avatar_url }} />
-          <Text style={styles.textData}>{profile.data.login}</Text>
-          <Text style={styles.textData}>{profile.data.name}</Text>
-          <Text style={styles.textData}>{profile.data.location}</Text>
-        </View>
-      );
-    } else if (profile.err) {
-      return <NoDataView onRetryPress={getProfile} />;
+    if (topics.data) {
+      return <TopicList />;
+    } else if (topics.err) {
+      return <NoDataView onRetryPress={getTopics} />;
     } else {
       return null;
     }
   };
 
   const renderLoading = () => {
-    if (profile.fetching) {
+    if (topics.fetching) {
       return (
         <View style={styles.viewLoading}>
           <ActivityIndicator size="small" />
@@ -66,28 +54,13 @@ const ProfileScreen = () => {
     }
   };
 
-  const renderButton = () => {
-    return (
-      <View>
-        <TouchableOpacity style={styles.btnGetData} onPress={getProfile}>
-          <Text style={styles.textGetData}>Get profile</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.btnGetData} onPress={goDetailScreen}>
-          <Text style={styles.textGetData}>Go detail</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
-
   return (
     <View style={styles.mainContainer}>
       {renderToolbar()}
-      <TopicList />
-      {/* {renderButton()} */}
+      {/* <TopicList /> */}
       {renderDataView()}
       {renderLoading()}
     </View>
   );
 };
-export default ProfileScreen;
+export default TopicScreen;
