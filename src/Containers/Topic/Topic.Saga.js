@@ -13,7 +13,7 @@ export function* watchGetTopic() {
 
 function* handleGetTopic(action) {
   const response = yield call(getTopics, action.payload);
-  if (esponse.data.success) {
+  if (response.data.success) {
     yield put(getTopicSuccess(response.data));
   } else {
     if (
