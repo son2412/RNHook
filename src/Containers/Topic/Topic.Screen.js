@@ -41,7 +41,7 @@ const TopicScreen = () => {
 
   const renderDataView = () => {
     if (topics.data) {
-      return <TopicList />;
+      return <TopicList data={topics.data} />;
     } else if (topics.err) {
       return <NoDataView onRetryPress={getTopics} />;
     } else {

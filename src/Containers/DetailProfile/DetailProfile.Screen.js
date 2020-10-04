@@ -1,26 +1,26 @@
-import React, {Fragment, useState} from 'react';
-import {
-  StatusBar,
-  Text,
-  TouchableOpacity,
-  View,
-  SafeAreaView,
-  Image,
-  TextInput,
-  ScrollView,
-  Platform,
-} from 'react-native';
+import React, { Fragment, useState } from 'react';
+import { StatusBar, Text, TouchableOpacity, View, SafeAreaView, Image, TextInput, ScrollView, Platform } from 'react-native';
 import styles from './DetailProfile.Style';
 import colors from '../../Themes/Colors';
-import {barStyle} from '../../const';
+import { barStyle } from '../../const';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import moment from 'moment';
 import Images from '../../../assets/images';
+import ImagePicker from 'react-native-image-picker';
+import { upload } from '../../Api/uploadApi';
 
+const options = {
+  title: 'Select Avatar',
+  customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+  storageOptions: {
+    skipBackup: true,
+    path: 'images'
+  }
+};
 const DetailProfileScreen = () => {
   const navigation = useNavigation();
   const profile = useSelector(state => state.getMyProfile.data);
@@ -33,6 +33,7 @@ const DetailProfileScreen = () => {
   const [gender, setGender] = useState(profile.gender);
   const [birth, setBirth] = useState(profile.birth);
   const [avatar, setAvatar] = useState(profile.image ? profile.image.url : '');
+  const [uploading, setUploading] = useState(false);
 
   const handleConfirmDate = date => {
     setBirth(moment(date).format('YYYY-MM-DD'));
@@ -50,7 +51,7 @@ const DetailProfileScreen = () => {
       email: email,
       phone: phone,
       gender: gender,
-      birth: birth,
+      birth: birth
     };
     console.log(data);
     setVisible(false);
@@ -59,23 +60,11 @@ const DetailProfileScreen = () => {
   const renderToolbar = () => {
     return (
       <View style={styles.toolbar}>
-        <StatusBar
-          hidden={false}
-          backgroundColor={colors.primary}
-          barStyle={barStyle.lightContent}
-        />
-        <TouchableOpacity
-          style={styles.viewWrapIcLeft}
-          onPress={() => navigation.openDrawer()}>
-          <MaterialCommunityIcons
-            name={'menu'}
-            size={30}
-            color={colors.white}
-          />
+        <StatusBar hidden={false} backgroundColor={colors.primary} barStyle={barStyle.lightContent} />
+        <TouchableOpacity style={styles.viewWrapIcLeft} onPress={() => navigation.openDrawer()}>
+          <MaterialCommunityIcons name={'menu'} size={30} color={colors.white} />
         </TouchableOpacity>
-        <View style={styles.viewWrapTitleToolbar}>
-          {/* <Text style={styles.titleToolbar}>Detail profile</Text> */}
-        </View>
+        <View style={styles.viewWrapTitleToolbar}>{/* <Text style={styles.titleToolbar}>Detail profile</Text> */}</View>
         <View style={styles.viewWrapIcRight}>
           <TouchableOpacity onPress={() => setVisible(true)}>
             <Text style={styles.titleToolbar}>Edit</Text>
@@ -85,24 +74,38 @@ const DetailProfileScreen = () => {
     );
   };
 
+  const uploadAvatar = () => {
+    ImagePicker.launchImageLibrary(options, response => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        const image = { uri: response.uri, type: response.type, name: response.fileName || response.uri.substr(response.uri.lastIndexOf('/') + 1) };
+        var fd = new FormData();
+        fd.append('files', [image]);
+        console.log(fd);
+        upload(fd)
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => console.log(err));
+      }
+    });
+  };
+
   return (
     <Fragment>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.mainContainer}>
           {renderToolbar()}
           <View style={styles.header}>
-            <Image
-              style={styles.avatar}
-              source={avatar ? {uri: avatar} : Images.Images.Avatar}
-            />
+            <Image style={styles.avatar} source={avatar ? { uri: avatar } : Images.Images.Avatar} />
             {visible ? (
               <View style={styles.wrapCamera}>
-                <MaterialCommunityIcons
-                  name={'camera-enhance-outline'}
-                  size={20}
-                  color={colors.black}
-                  onPress={() => console.log('a')}
-                />
+                <MaterialCommunityIcons name={'camera-enhance-outline'} size={20} color={colors.black} onPress={uploadAvatar} />
               </View>
             ) : null}
           </View>
@@ -119,9 +122,7 @@ const DetailProfileScreen = () => {
                   editable={visible}
                 />
               </View>
-              <Text style={[styles.text_footer, {marginTop: 15}]}>
-                LastName
-              </Text>
+              <Text style={[styles.text_footer, { marginTop: 15 }]}>LastName</Text>
               <View style={styles.action}>
                 <FontAwesome name="user-o" color="#05375a" size={20} />
                 <TextInput
@@ -132,7 +133,7 @@ const DetailProfileScreen = () => {
                   editable={visible}
                 />
               </View>
-              <Text style={[styles.text_footer, {marginTop: 15}]}>Email</Text>
+              <Text style={[styles.text_footer, { marginTop: 15 }]}>Email</Text>
               <View style={styles.action}>
                 <FontAwesome name="envelope-o" color="#05375a" size={20} />
                 <TextInput
@@ -143,7 +144,7 @@ const DetailProfileScreen = () => {
                   editable={visible}
                 />
               </View>
-              <Text style={[styles.text_footer, {marginTop: 15}]}>Phone</Text>
+              <Text style={[styles.text_footer, { marginTop: 15 }]}>Phone</Text>
               <View style={styles.action}>
                 <FontAwesome name="mobile-phone" color="#05375a" size={20} />
                 <TextInput
@@ -154,7 +155,7 @@ const DetailProfileScreen = () => {
                   editable={visible}
                 />
               </View>
-              <Text style={[styles.text_footer, {marginTop: 15}]}>Birth</Text>
+              <Text style={[styles.text_footer, { marginTop: 15 }]}>Birth</Text>
               <View style={styles.action}>
                 <FontAwesome name="calendar" color="#05375a" size={20} />
                 {Platform.OS === 'ios' ? (
@@ -162,21 +163,12 @@ const DetailProfileScreen = () => {
                     defaultValue={birth}
                     style={styles.textInput}
                     autoCapitalize="none"
-                    onTouchStart={() =>
-                      visible ? setShow(true) : setShow(false)
-                    }
+                    onTouchStart={() => (visible ? setShow(true) : setShow(false))}
                     editable={false}
                   />
                 ) : (
-                  <TouchableOpacity
-                    disabled={!visible}
-                    onPress={() => setShow(true)}>
-                    <TextInput
-                      defaultValue={birth}
-                      style={styles.textInput}
-                      autoCapitalize="none"
-                      editable={false}
-                    />
+                  <TouchableOpacity disabled={!visible} onPress={() => setShow(true)}>
+                    <TextInput defaultValue={birth} style={styles.textInput} autoCapitalize="none" editable={false} />
                   </TouchableOpacity>
                 )}
               </View>
@@ -187,39 +179,20 @@ const DetailProfileScreen = () => {
                 onConfirm={handleConfirmDate}
                 onCancel={hideDatePicker}
               />
-              <Text style={[styles.text_footer, {marginTop: 15}]}>Gender</Text>
+              <Text style={[styles.text_footer, { marginTop: 15 }]}>Gender</Text>
               <View style={styles.action}>
                 <FontAwesome name="transgender" color="#05375a" size={20} />
                 <View style={styles.view_gender}>
-                  <TouchableOpacity
-                    disabled={!visible}
-                    onPress={() => setGender(1)}>
-                    <Text
-                      style={[
-                        styles.element_gender,
-                        gender === 1 && {color: 'green'},
-                      ]}>
-                      Male
-                    </Text>
+                  <TouchableOpacity disabled={!visible} onPress={() => setGender(1)}>
+                    <Text style={[styles.element_gender, gender === 1 && { color: 'green' }]}>Male</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity
-                    disabled={!visible}
-                    onPress={() => setGender(2)}>
-                    <Text
-                      style={[
-                        styles.element_gender,
-                        gender === 2 && {color: 'green'},
-                      ]}>
-                      Female
-                    </Text>
+                  <TouchableOpacity disabled={!visible} onPress={() => setGender(2)}>
+                    <Text style={[styles.element_gender, gender === 2 && { color: 'green' }]}>Female</Text>
                   </TouchableOpacity>
                 </View>
               </View>
               <View style={styles.bodyContent}>
-                <TouchableOpacity
-                  disabled={!visible}
-                  style={styles.buttonContainer}
-                  onPress={handleSave}>
+                <TouchableOpacity disabled={!visible} style={styles.buttonContainer} onPress={handleSave}>
                   <Text>Save</Text>
                 </TouchableOpacity>
               </View>
