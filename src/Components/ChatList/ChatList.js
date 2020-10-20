@@ -1,9 +1,9 @@
 import React from 'react';
-import {FlatList, ActivityIndicator} from 'react-native';
+import { FlatList, ActivityIndicator } from 'react-native';
 import ChatItem from './ChatItem';
 
-const ChatList = ({data, loading, page, setPage, totalPage}) => {
-  const renderItem = ({item}) => {
+const ChatList = ({ data, loading, page, setPage, totalPage }) => {
+  const renderItem = ({ item }) => {
     return <ChatItem item={item} />;
   };
 
@@ -11,7 +11,7 @@ const ChatList = ({data, loading, page, setPage, totalPage}) => {
     if (!loading) {
       return null;
     }
-    return <ActivityIndicator size="small" style={{color: '#000'}} />;
+    return <ActivityIndicator size="small" style={{ color: '#000' }} />;
   };
 
   const handleLoadMore = () => {
@@ -26,9 +26,7 @@ const ChatList = ({data, loading, page, setPage, totalPage}) => {
       renderItem={renderItem}
       keyExtractor={(item, index) => `${item.id}`}
       onEndReachedThreshold={0.4}
-      ListFooterComponent={
-        totalPage > 0 && page <= totalPage ? renderFooter : null
-      }
+      ListFooterComponent={totalPage > 0 && page <= totalPage ? renderFooter : null}
       onEndReached={totalPage > 0 && page <= totalPage && handleLoadMore}
     />
   );

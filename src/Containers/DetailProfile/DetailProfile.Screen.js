@@ -85,7 +85,7 @@ const DetailProfileScreen = () => {
       } else {
         const image = { uri: response.uri, type: response.type, name: response.fileName || response.uri.substr(response.uri.lastIndexOf('/') + 1) };
         var fd = new FormData();
-        fd.append('files', [image]);
+        fd.append('files', response);
         console.log(fd);
         upload(fd)
           .then(res => {

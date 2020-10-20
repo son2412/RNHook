@@ -1,9 +1,9 @@
 import React from 'react';
-import {FlatList, ActivityIndicator} from 'react-native';
+import { FlatList, ActivityIndicator } from 'react-native';
 import UserItem from './UserItem';
 
-const ActiveList = ({data, loading, page, setPage, totalPage, loadMore}) => {
-  const renderItem = ({item}) => {
+const ActiveList = ({ data, loading, page, setPage, totalPage, loadMore }) => {
+  const renderItem = ({ item }) => {
     return <UserItem item={item} />;
   };
 
@@ -11,7 +11,7 @@ const ActiveList = ({data, loading, page, setPage, totalPage, loadMore}) => {
     if (!loading) {
       return null;
     }
-    return <ActivityIndicator size="small" style={{color: '#000'}} />;
+    return <ActivityIndicator size="small" style={{ color: '#000' }} />;
   };
 
   const handleLoadMore = () => {
@@ -27,9 +27,7 @@ const ActiveList = ({data, loading, page, setPage, totalPage, loadMore}) => {
       renderItem={renderItem}
       keyExtractor={(item, index) => `${item.id}`}
       onEndReachedThreshold={0.5}
-      ListFooterComponent={
-        totalPage > 0 && page <= totalPage ? renderFooter : null
-      }
+      ListFooterComponent={totalPage > 0 && page <= totalPage ? renderFooter : null}
       onEndReached={totalPage > 0 && page <= totalPage && handleLoadMore}
     />
   );
