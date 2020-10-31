@@ -1,14 +1,14 @@
-import {StyleSheet, Platform} from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#009387',
+    backgroundColor: '#009387'
   },
   header: {
     flex: 1,
     justifyContent: 'flex-end',
     paddingHorizontal: 20,
-    paddingBottom: 10,
+    paddingBottom: 10
   },
   footer: {
     flex: Platform.OS === 'ios' ? 3 : 5,
@@ -16,59 +16,59 @@ export default StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
-    paddingVertical: 30,
+    paddingVertical: 30
   },
   text_header: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 30
   },
   text_footer: {
     color: '#05375a',
-    fontSize: 18,
+    fontSize: 18
   },
   action: {
     flexDirection: 'row',
     marginTop: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#f2f2f2',
-    paddingBottom: 5,
+    paddingBottom: 5
   },
   textInput: {
     flex: 1,
     marginTop: Platform.OS === 'ios' ? 0 : -12,
     paddingLeft: 10,
-    color: '#05375a',
+    color: '#05375a'
   },
   button: {
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 20
   },
   signIn: {
     width: '100%',
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 10,
+    borderRadius: 10
   },
   textSign: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   textPrivate: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 10,
+    marginTop: 10
   },
   color_textPrivate: {
-    color: 'grey',
+    color: 'grey'
   },
   view_gender: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   element_gender: {
     marginLeft: 50,
-    fontSize: 16,
-  },
+    fontSize: 16
+  }
 });

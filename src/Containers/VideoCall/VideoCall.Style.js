@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   buttonBar: {
     height: 50,
@@ -10,7 +10,7 @@ export default StyleSheet.create({
     left: 0,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignContent: 'center',
+    alignContent: 'center'
   },
   localVideoStyle: {
     width: 140,
@@ -18,7 +18,7 @@ export default StyleSheet.create({
     position: 'absolute',
     top: 5,
     right: 5,
-    zIndex: 100,
+    zIndex: 100
   },
   iconStyle: {
     fontSize: 34,
@@ -26,9 +26,9 @@ export default StyleSheet.create({
     paddingLeft: 40,
     paddingRight: 40,
     paddingBottom: 15,
-    borderRadius: 0,
+    borderRadius: 0
   },
   full: {
-    flex: 1,
-  },
+    flex: 1
+  }
 });

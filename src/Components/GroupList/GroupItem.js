@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Alert} from 'react-native';
-import {Card, Text} from 'react-native-paper';
+import { View, Alert } from 'react-native';
+import { Card, Text } from 'react-native-paper';
 import Avatar from '../Avatar/Avatar';
 import styles from './styles';
 
@@ -8,7 +8,7 @@ const GroupItem = props => {
   const onPress = () => {
     Alert.alert('Pressed');
   };
-  const {item} = props;
+  const { item } = props;
   return (
     <Card style={styles.card} onPress={onPress}>
       <View style={styles.cardView}>

@@ -1,11 +1,11 @@
 import colors from './Colors';
-import {Dimensions, Platform, StyleSheet} from 'react-native';
-import {fontFamily, fontSize} from '../const';
+import { Dimensions, Platform, StyleSheet } from 'react-native';
+import { fontFamily, fontSize } from '../const';
 
 const ApplicationStyle = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: colors.bgRoot,
+    backgroundColor: colors.bgRoot
   },
   toolbar: {
     flexDirection: 'row',
@@ -13,27 +13,27 @@ const ApplicationStyle = StyleSheet.create({
     height: Platform.OS === 'android' ? 48 : isIphoneX() ? 48 : 48,
     paddingTop: Platform.OS === 'android' ? 0 : isIphoneX() ? 0 : 0,
     backgroundColor: colors.primary,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   viewWrapTitleToolbar: {
     flex: 5,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   titleToolbar: {
     color: colors.white,
     fontFamily: fontFamily.bold,
-    fontSize: fontSize.large,
+    fontSize: fontSize.large
   },
   viewWrapIcLeft: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   icLeft: {
     width: 23,
     height: 23,
-    tintColor: colors.white,
+    tintColor: colors.white
   },
   viewWrapIcRight: {
     flex: 1,
@@ -41,22 +41,22 @@ const ApplicationStyle = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 16,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   icRight: {
     width: 23,
     height: 23,
-    tintColor: colors.white,
+    tintColor: colors.white
   },
   textRight: {
     color: colors.white,
     fontFamily: fontFamily.medium,
-    fontSize: fontSize.medium,
+    fontSize: fontSize.medium
   },
   viewHorizontalLine: {
     backgroundColor: colors.grey,
     height: 0.5,
-    alignSelf: 'stretch',
+    alignSelf: 'stretch'
   },
   viewWrap1IcRight: {
     flex: 1,
@@ -64,8 +64,8 @@ const ApplicationStyle = StyleSheet.create({
     paddingVertical: 8,
     // paddingHorizontal: 16,
     justifyContent: 'center',
-    alignItems: 'center',
-  },
+    alignItems: 'center'
+  }
 });
 
 export default ApplicationStyle;

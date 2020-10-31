@@ -1,23 +1,15 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {
-  Text,
-  View,
-  KeyboardAvoidingView,
-  Button,
-  ImageBackground,
-  LayoutAnimation,
-  TouchableOpacity,
-} from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { Text, View, KeyboardAvoidingView, Button, ImageBackground, LayoutAnimation, TouchableOpacity } from 'react-native';
 import styles from './SignIn.Style';
-import {useNavigation} from '@react-navigation/native';
-import {Input, Icon} from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
+import { Input, Icon } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import Image from '../../../assets/images';
-import {useDispatch, useSelector} from 'react-redux';
-import {signInRequest} from './SignIn.Action';
+import { useDispatch, useSelector } from 'react-redux';
+import { signInRequest } from './SignIn.Action';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const TabSelector = ({selected}) => {
+const TabSelector = ({ selected }) => {
   return (
     <View style={styles.selectorContainer}>
       <View style={selected && styles.selected} />
@@ -26,7 +18,7 @@ const TabSelector = ({selected}) => {
 };
 
 TabSelector.propTypes = {
-  selected: PropTypes.bool.isRequired,
+  selected: PropTypes.bool.isRequired
 };
 const SignInScreen = () => {
   const signIn = useSelector(state => state.signIn);
@@ -72,7 +64,7 @@ const SignInScreen = () => {
   const _onPressSignIn = () => {
     setIsLoading(true);
     // Simulate an API call
-    dispatch(signInRequest({email: email, password: password}));
+    dispatch(signInRequest({ email: email, password: password }));
     setTimeout(() => {
       LayoutAnimation.easeInEaseOut();
       setIsLoading(false);
@@ -88,9 +80,7 @@ const SignInScreen = () => {
       setIsLoading(false);
       setIsEmailValid(validateEmail(email) || emailInput.shake());
       setIsPasswordValid(password.length >= 6);
-      setIsConfirmationValid(
-        password === passwordConfirmation || confirmationInput.shake(),
-      );
+      setIsConfirmationValid(password === passwordConfirmation || confirmationInput.shake());
     }, 1500);
   };
 
@@ -98,28 +88,23 @@ const SignInScreen = () => {
     <View style={styles.container}>
       <ImageBackground source={Image.Images.BG_AUTH} style={styles.bgImage}>
         <View>
-          <KeyboardAvoidingView
-            contentContainerStyle={styles.loginContainer}
-            behavior="position">
+          <KeyboardAvoidingView contentContainerStyle={styles.loginContainer} behavior="position">
             <View style={styles.titleContainer}>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Text style={styles.titleText}>REACT</Text>
               </View>
-              <View style={{marginTop: -10, marginLeft: 10}}>
+              <View style={{ marginTop: -10, marginLeft: 10 }}>
                 <Text style={styles.titleText}>NATIVE</Text>
               </View>
             </View>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: 'row' }}>
               <Button
                 disabled={isLoading}
                 type="clear"
                 activeOpacity={0.7}
                 onPress={() => selectCategory(0)}
-                containerStyle={{flex: 1}}
-                titleStyle={[
-                  styles.categoryText,
-                  isLoginPage && styles.selectedCategoryText,
-                ]}
+                containerStyle={{ flex: 1 }}
+                titleStyle={[styles.categoryText, isLoginPage && styles.selectedCategoryText]}
                 title={'Login'}
               />
               <Button
@@ -127,11 +112,8 @@ const SignInScreen = () => {
                 type="clear"
                 activeOpacity={0.7}
                 onPress={() => selectCategory(1)}
-                containerStyle={{flex: 1}}
-                titleStyle={[
-                  styles.categoryText,
-                  isSignUpPage && styles.selectedCategoryText,
-                ]}
+                containerStyle={{ flex: 1 }}
+                titleStyle={[styles.categoryText, isSignUpPage && styles.selectedCategoryText]}
                 title={'Sign up'}
               />
             </View>
@@ -142,13 +124,7 @@ const SignInScreen = () => {
             <View style={styles.formContainer}>
               <Input
                 leftIcon={
-                  <Icon
-                    name="envelope-o"
-                    type="font-awesome"
-                    color="rgba(0, 0, 0, 0.38)"
-                    size={25}
-                    style={{backgroundColor: 'transparent'}}
-                  />
+                  <Icon name="envelope-o" type="font-awesome" color="rgba(0, 0, 0, 0.38)" size={25} style={{ backgroundColor: 'transparent' }} />
                 }
                 value={email}
                 keyboardAppearance="light"
@@ -157,27 +133,19 @@ const SignInScreen = () => {
                 autoCorrect={false}
                 keyboardType="email-address"
                 returnKeyType="next"
-                inputStyle={{marginLeft: 10}}
+                inputStyle={{ marginLeft: 10 }}
                 placeholder={'Email'}
                 containerStyle={{
-                  borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                  borderBottomColor: 'rgba(0, 0, 0, 0.38)'
                 }}
                 ref={input => (emailInput = input)}
                 onSubmitEditing={() => passwordInput.focus()}
                 onChangeText={text => setEmail(text)}
-                errorMessage={
-                  isEmailValid ? null : 'Please enter a valid email address'
-                }
+                errorMessage={isEmailValid ? null : 'Please enter a valid email address'}
               />
               <Input
                 leftIcon={
-                  <Icon
-                    name="lock"
-                    type="simple-line-icon"
-                    color="rgba(0, 0, 0, 0.38)"
-                    size={25}
-                    style={{backgroundColor: 'transparent'}}
-                  />
+                  <Icon name="lock" type="simple-line-icon" color="rgba(0, 0, 0, 0.38)" size={25} style={{ backgroundColor: 'transparent' }} />
                 }
                 value={password}
                 keyboardAppearance="light"
@@ -188,30 +156,18 @@ const SignInScreen = () => {
                 blurOnSubmit={true}
                 containerStyle={{
                   marginTop: 16,
-                  borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                  borderBottomColor: 'rgba(0, 0, 0, 0.38)'
                 }}
-                inputStyle={{marginLeft: 10}}
+                inputStyle={{ marginLeft: 10 }}
                 placeholder={'Password'}
                 ref={input => (passwordInput = input)}
-                onSubmitEditing={() =>
-                  isSignUpPage ? confirmationInput.focus() : _onPressSignIn
-                }
+                onSubmitEditing={() => (isSignUpPage ? confirmationInput.focus() : _onPressSignIn)}
                 onChangeText={text => setPassword(text)}
-                errorMessage={
-                  isPasswordValid ? null : 'Please enter at least 8 characters'
-                }
+                errorMessage={isPasswordValid ? null : 'Please enter at least 8 characters'}
               />
               {isSignUpPage && (
                 <Input
-                  icon={
-                    <Icon
-                      name="lock"
-                      type="simple-line-icon"
-                      color="rgba(0, 0, 0, 0.38)"
-                      size={25}
-                      style={{backgroundColor: 'transparent'}}
-                    />
-                  }
+                  icon={<Icon name="lock" type="simple-line-icon" color="rgba(0, 0, 0, 0.38)" size={25} style={{ backgroundColor: 'transparent' }} />}
                   value={passwordConfirmation}
                   secureTextEntry={true}
                   keyboardAppearance="light"
@@ -222,23 +178,19 @@ const SignInScreen = () => {
                   blurOnSubmit={true}
                   containerStyle={{
                     marginTop: 16,
-                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                    borderBottomColor: 'rgba(0, 0, 0, 0.38)'
                   }}
-                  inputStyle={{marginLeft: 10}}
+                  inputStyle={{ marginLeft: 10 }}
                   placeholder={'Confirm password'}
                   ref={input => (confirmationInput = input)}
                   onSubmitEditing={_onPressSignUp}
                   onChangeText={text => setPasswordConfirmation(text)}
-                  errorMessage={
-                    isConfirmationValid
-                      ? null
-                      : 'Please enter the same password'
-                  }
+                  errorMessage={isConfirmationValid ? null : 'Please enter the same password'}
                 />
               )}
               <Button
                 buttonStyle={styles.loginButton}
-                containerStyle={{marginTop: 32, flex: 0}}
+                containerStyle={{ marginTop: 32, flex: 0 }}
                 activeOpacity={0.8}
                 title={!isLoginPage ? 'LOGIN' : 'SIGN UP'}
                 onPress={!isLoginPage ? _onPressSignIn : _onPressSignUp}
@@ -250,7 +202,7 @@ const SignInScreen = () => {
           </KeyboardAvoidingView>
           <View style={styles.helpContainer}>
             <TouchableOpacity onPress={() => navigation.navigate('Drawer', {})}>
-              <Text style={{color: 'white'}}>{'Need help ?'}</Text>
+              <Text style={{ color: 'white' }}>{'Need help ?'}</Text>
             </TouchableOpacity>
             {/* <Button
               title={'Need help ?'}

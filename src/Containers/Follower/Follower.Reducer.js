@@ -1,10 +1,6 @@
-import {
-  GET_FOLLOWER_FAIL,
-  GET_FOLLOWER_REQUEST,
-  GET_FOLLOWER_SUCCESS,
-} from './Follower.Action';
+import { GET_FOLLOWER_FAIL, GET_FOLLOWER_REQUEST, GET_FOLLOWER_SUCCESS } from './Follower.Action';
 
-const initialState = {fetching: false, data: null, err: null};
+const initialState = { fetching: false, data: null, err: null };
 
 export const getFollower = (state = initialState, action) => {
   switch (action.type) {
@@ -12,19 +8,19 @@ export const getFollower = (state = initialState, action) => {
       return {
         fetching: true,
         data: null,
-        err: null,
+        err: null
       };
     case GET_FOLLOWER_SUCCESS:
       return {
         fetching: false,
         data: action.payload.data,
-        err: null,
+        err: null
       };
     case GET_FOLLOWER_FAIL:
       return {
         fetching: false,
         data: null,
-        err: action.payload.err,
+        err: action.payload.err
       };
     default:
       return state;

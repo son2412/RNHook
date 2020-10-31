@@ -1,6 +1,6 @@
-import {ACTIVE_REQUEST, ACTIVE_SUCCESS, ACTIVE_FAIL} from './Active.Action';
+import { ACTIVE_REQUEST, ACTIVE_SUCCESS, ACTIVE_FAIL } from './Active.Action';
 
-const initialState = {fetching: false, data: [], totalPage: 0, err: null};
+const initialState = { fetching: false, data: [], totalPage: 0, err: null };
 
 export const getUserActive = (state = initialState, action) => {
   switch (action.type) {
@@ -9,21 +9,21 @@ export const getUserActive = (state = initialState, action) => {
         fetching: true,
         data: state.data,
         err: null,
-        totalPage: 0,
+        totalPage: 0
       };
     case ACTIVE_SUCCESS:
       return {
         fetching: false,
         data: [...state.data, ...action.payload.data.data],
         err: null,
-        totalPage: action.payload.data.totalPage,
+        totalPage: action.payload.data.totalPage
       };
     case ACTIVE_FAIL:
       return {
         fetching: false,
         data: [],
         err: action.payload.err,
-        totalPage: 0,
+        totalPage: 0
       };
     default:
       return state;

@@ -1,17 +1,11 @@
-import React, {Fragment} from 'react';
-import {
-  StatusBar,
-  Text,
-  TouchableOpacity,
-  View,
-  SafeAreaView,
-} from 'react-native';
+import React, { Fragment } from 'react';
+import { StatusBar, Text, TouchableOpacity, View, SafeAreaView } from 'react-native';
 import styles from './Chat.Style';
 import colors from '../../Themes/Colors';
-import {barStyle} from '../../const';
+import { barStyle } from '../../const';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useNavigation} from '@react-navigation/native';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import { useNavigation } from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import ListChatScreen from '../ListChat/ListChat.Screen';
 import ActiveScreen from '../Active/Active.Screen';
 import CallScreen from '../Call/Call.Screen';
@@ -24,19 +18,9 @@ const ChatScreen = () => {
   const renderToolbar = () => {
     return (
       <View style={styles.toolbar}>
-        <StatusBar
-          hidden={false}
-          backgroundColor={colors.primary}
-          barStyle={barStyle.lightContent}
-        />
-        <TouchableOpacity
-          style={styles.viewWrapIcLeft}
-          onPress={() => navigation.openDrawer()}>
-          <MaterialCommunityIcons
-            name={'menu'}
-            size={30}
-            color={colors.white}
-          />
+        <StatusBar hidden={false} backgroundColor={colors.primary} barStyle={barStyle.lightContent} />
+        <TouchableOpacity style={styles.viewWrapIcLeft} onPress={() => navigation.openDrawer()}>
+          <MaterialCommunityIcons name={'menu'} size={30} color={colors.white} />
         </TouchableOpacity>
         <View style={styles.viewWrapTitleToolbar}>
           <Text style={styles.titleToolbar}>Chats</Text>
@@ -48,7 +32,7 @@ const ChatScreen = () => {
 
   return (
     <Fragment>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.mainContainer}>
           {renderToolbar()}
           <Tab.Navigator>

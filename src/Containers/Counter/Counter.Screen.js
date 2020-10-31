@@ -1,10 +1,10 @@
-import React, {useRef, useState} from 'react';
-import {StatusBar, Text, TouchableOpacity, View} from 'react-native';
+import React, { useRef, useState } from 'react';
+import { StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import styles from './Counter.Style';
 import colors from '../../Themes/Colors';
-import {barStyle} from '../../const';
+import { barStyle } from '../../const';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 const CounterScreen = () => {
   const navigation = useNavigation();
@@ -19,19 +19,9 @@ const CounterScreen = () => {
   const renderToolbar = () => {
     return (
       <View style={styles.toolbar}>
-        <StatusBar
-          hidden={false}
-          backgroundColor={colors.primary}
-          barStyle={barStyle.lightContent}
-        />
-        <TouchableOpacity
-          style={styles.viewWrapIcLeft}
-          onPress={navigation.openDrawer}>
-          <MaterialCommunityIcons
-            name={'menu'}
-            size={30}
-            color={colors.white}
-          />
+        <StatusBar hidden={false} backgroundColor={colors.primary} barStyle={barStyle.lightContent} />
+        <TouchableOpacity style={styles.viewWrapIcLeft} onPress={navigation.openDrawer}>
+          <MaterialCommunityIcons name={'menu'} size={30} color={colors.white} />
         </TouchableOpacity>
         <View style={styles.viewWrapTitleToolbar}>
           <Text style={styles.titleToolbar}>Counter</Text>
@@ -51,7 +41,7 @@ const CounterScreen = () => {
 
   const renderData = () => {
     return (
-      <View style={{margin: 20}}>
+      <View style={{ margin: 20 }}>
         <Text style={styles.text}>State count: {counterState}</Text>
         <Text style={styles.text}>Instance count: {counter.current}</Text>
       </View>

@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import AppStyles from '../../styles';
 
 const styles = StyleSheet.create({
@@ -6,13 +6,13 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     backgroundColor: AppStyles.colors.separator,
-    borderRadius: 24,
+    borderRadius: 24
   },
   avatar: {
     width: 48,
     height: 48,
     borderRadius: 24,
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
   statusDot: {
     position: 'absolute',
@@ -23,19 +23,19 @@ const styles = StyleSheet.create({
     borderRadius: 9,
     borderWidth: 2,
     borderColor: AppStyles.colors.white,
-    backgroundColor: AppStyles.colors.onlineGreen,
+    backgroundColor: AppStyles.colors.onlineGreen
   },
   avatarLargeView: {
     width: 64,
     height: 64,
     backgroundColor: AppStyles.colors.separator,
-    borderRadius: 32,
+    borderRadius: 32
   },
   avatarLarge: {
     width: 64,
     height: 64,
     borderRadius: 32,
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
   statusDotLarge: {
     position: 'absolute',
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 2,
     borderColor: AppStyles.colors.white,
-    backgroundColor: AppStyles.colors.onlineGreen,
-  },
+    backgroundColor: AppStyles.colors.onlineGreen
+  }
 });
 
 export default styles;

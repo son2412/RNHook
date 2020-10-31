@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './RootContainer.Style';
-import {Keyboard, Platform, View, ActivityIndicator} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { Keyboard, Platform, View, ActivityIndicator } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import DrawerNavigatorScreen from '../DrawerNavigator/DrawerNavigator.Screen';
 import Toast from 'react-native-simple-toast';
-import {useDispatch, useSelector} from 'react-redux';
-import {clearNetworkFail, checkSignIn} from '../actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearNetworkFail, checkSignIn } from '../actions';
 import RootStackScreen from './RootStack.Screen';
 import AsyncStorage from '@react-native-community/async-storage';
 import DetailChatScreen from '../Containers/DetailChat/DetailChat.Screen';
@@ -24,19 +24,13 @@ const RootContainerScreen = () => {
   const clearNetworkStatus = () => dispatch(clearNetworkFail());
 
   useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      'keyboardDidShow',
-      e => {
-        setIsKeyboardShow(true);
-        setKeyboardHeight(e.endCoordinates.height);
-      },
-    );
-    const keyboardDidHideListener = Keyboard.addListener(
-      'keyboardDidHide',
-      () => {
-        setIsKeyboardShow(false);
-      },
-    );
+    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', e => {
+      setIsKeyboardShow(true);
+      setKeyboardHeight(e.endCoordinates.height);
+    });
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
+      setIsKeyboardShow(false);
+    });
 
     return () => {
       keyboardDidShowListener.remove();
@@ -71,7 +65,7 @@ const RootContainerScreen = () => {
 
   if (isLogin.fetching) {
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator size="small" />
       </View>
     );
@@ -82,26 +76,14 @@ const RootContainerScreen = () => {
         {isLogin.token ? (
           <Stack.Navigator initialRouteName="Drawer" headerMode={'none'}>
             <>
-              <Stack.Screen
-                name="Drawer"
-                component={DrawerNavigatorScreen}
-                options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
-              />
-              <Stack.Screen
-                name="DetailChatScreen"
-                component={DetailChatScreen}
-                options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
-              />
+              <Stack.Screen name="Drawer" component={DrawerNavigatorScreen} options={{ gestureEnabled: true, gestureDirection: 'horizontal' }} />
+              <Stack.Screen name="DetailChatScreen" component={DetailChatScreen} options={{ gestureEnabled: true, gestureDirection: 'horizontal' }} />
               <Stack.Screen
                 name="DetailFollowerScreen"
                 component={DetailFollowerScreen}
-                options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
+                options={{ gestureEnabled: true, gestureDirection: 'horizontal' }}
               />
-              <Stack.Screen
-                name="VideoCallScreen"
-                component={VideoCallScreen}
-                options={{gestureEnabled: true, gestureDirection: 'horizontal'}}
-              />
+              <Stack.Screen name="VideoCallScreen" component={VideoCallScreen} options={{ gestureEnabled: true, gestureDirection: 'horizontal' }} />
             </>
           </Stack.Navigator>
         ) : (
@@ -112,9 +94,7 @@ const RootContainerScreen = () => {
       </NavigationContainer>
 
       {/*Keyboard padding*/}
-      {isKeyboardShow && Platform.OS === 'ios' ? (
-        <View style={{height: keyboardHeight}} />
-      ) : null}
+      {isKeyboardShow && Platform.OS === 'ios' ? <View style={{ height: keyboardHeight }} /> : null}
     </View>
   );
 };

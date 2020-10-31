@@ -1,10 +1,6 @@
-import {
-  CREATE_CHAT_WITH_REQUEST,
-  CREATE_CHAT_WITH_SUCCESS,
-  CREATE_CHAT_WITH_FAIL,
-} from '../Actions/CreateChatWith.Action';
+import { CREATE_CHAT_WITH_REQUEST, CREATE_CHAT_WITH_SUCCESS, CREATE_CHAT_WITH_FAIL } from '../Actions/CreateChatWith.Action';
 
-const initialState = {fetching: false, data: null, err: null};
+const initialState = { fetching: false, data: null, err: null };
 
 export const createChatWith = (state = initialState, action) => {
   switch (action.type) {
@@ -12,19 +8,19 @@ export const createChatWith = (state = initialState, action) => {
       return {
         fetching: true,
         data: null,
-        err: null,
+        err: null
       };
     case CREATE_CHAT_WITH_SUCCESS:
       return {
         fetching: false,
         data: action.payload.data.data,
-        err: null,
+        err: null
       };
     case CREATE_CHAT_WITH_FAIL:
       return {
         fetching: false,
         data: null,
-        err: action.payload.err,
+        err: action.payload.err
       };
     default:
       return state;

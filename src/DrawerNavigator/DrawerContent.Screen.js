@@ -1,20 +1,14 @@
-import React, {useEffect} from 'react';
-import {View, ActivityIndicator} from 'react-native';
-import {
-  useTheme,
-  Drawer,
-  Text,
-  TouchableRipple,
-  Switch,
-} from 'react-native-paper';
-import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
-import {useNavigation} from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import { View, ActivityIndicator } from 'react-native';
+import { useTheme, Drawer, Text, TouchableRipple, Switch } from 'react-native-paper';
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {myProfileRequest} from './MyProfile.Action';
-import {useDispatch, useSelector} from 'react-redux';
+import { myProfileRequest } from './MyProfile.Action';
+import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
-import {signOut} from '../actions';
-import {signInInit} from '../Containers/SignIn/SignIn.Action';
+import { signOut } from '../actions';
+import { signInInit } from '../Containers/SignIn/SignIn.Action';
 import DrawerProfile from '../Components/DrawerProfile.js/DrawerProfile';
 import styles from './DrawerNavigator.Style';
 
@@ -33,48 +27,34 @@ const DrawerContentScreen = () => {
     dispatch(signOut());
   };
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <DrawerContentScrollView>
         <View style={styles.drawerContent}>
-          {fetching ? (
-            <ActivityIndicator size="small" />
-          ) : (
-            <DrawerProfile profile={profile} />
-          )}
+          {fetching ? <ActivityIndicator size="small" /> : <DrawerProfile profile={profile} />}
 
           <Drawer.Section style={styles.drawerSection}>
             <DrawerItem
-              icon={({color, size}) => (
-                <Icon name="home-outline" color={color} size={size} />
-              )}
+              icon={({ color, size }) => <Icon name="home-outline" color={color} size={size} />}
               label="Home"
               onPress={() => navigation.navigate('TopicScreen')}
             />
             <DrawerItem
-              icon={({color, size}) => (
-                <Icon name="account-outline" color={color} size={size} />
-              )}
+              icon={({ color, size }) => <Icon name="account-outline" color={color} size={size} />}
               label="Profile"
               onPress={() => navigation.navigate('DetailProfileScreen')}
             />
             <DrawerItem
-              icon={({color, size}) => (
-                <Icon name="message-text-outline" color={color} size={size} />
-              )}
+              icon={({ color, size }) => <Icon name="message-text-outline" color={color} size={size} />}
               label="Chat"
               onPress={() => navigation.navigate('Chats')}
             />
             <DrawerItem
-              icon={({color, size}) => (
-                <Icon name="account-outline" color={color} size={size} />
-              )}
+              icon={({ color, size }) => <Icon name="account-outline" color={color} size={size} />}
               label="Followers"
               onPress={() => navigation.navigate('FollowerScreen')}
             />
             <DrawerItem
-              icon={({color, size}) => (
-                <Icon name="bookmark-outline" color={color} size={size} />
-              )}
+              icon={({ color, size }) => <Icon name="bookmark-outline" color={color} size={size} />}
               label="Bookmarks"
               onPress={() => {
                 navigation.navigate('CounterScreen');
@@ -112,13 +92,7 @@ const DrawerContentScreen = () => {
         </View>
       </DrawerContentScrollView>
       <Drawer.Section style={styles.bottomDrawerSection}>
-        <DrawerItem
-          icon={({color, size}) => (
-            <Icon name="exit-to-app" color={color} size={size} />
-          )}
-          label="Sign Out"
-          onPress={logOut}
-        />
+        <DrawerItem icon={({ color, size }) => <Icon name="exit-to-app" color={color} size={size} />} label="Sign Out" onPress={logOut} />
       </Drawer.Section>
     </View>
   );

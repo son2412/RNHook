@@ -1,13 +1,5 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  ScrollView,
-  StatusBar,
-  Platform,
-} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, TextInput, ScrollView, StatusBar, Platform } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
@@ -15,7 +7,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import styles from './SignUp.Style';
 import moment from 'moment';
 
-const SignUpScreen = ({navigation}) => {
+const SignUpScreen = ({ navigation }) => {
   const [show, setShow] = useState(false);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -34,8 +26,7 @@ const SignUpScreen = ({navigation}) => {
 
   const updateSecureTextEntry = () => setSecureTextEntry(!secureTextEntry);
 
-  const updateConfirmSecureTextEntry = () =>
-    setConfirmSecureTextEntry(!confirmSecureTextEntry);
+  const updateConfirmSecureTextEntry = () => setConfirmSecureTextEntry(!confirmSecureTextEntry);
 
   const handleConfirmDate = date => {
     setBirth(moment(date).format('YYYY-MM-DD'));
@@ -57,64 +48,44 @@ const SignUpScreen = ({navigation}) => {
           <Text style={styles.text_footer}>FirstName</Text>
           <View style={styles.action}>
             <FontAwesome name="user-o" color="#05375a" size={20} />
-            <TextInput
-              placeholder="Your FirstName"
-              style={styles.textInput}
-              autoCapitalize="none"
-              onChangeText={val => setFirstName(val)}
-            />
+            <TextInput placeholder="Your FirstName" style={styles.textInput} autoCapitalize="none" onChangeText={val => setFirstName(val)} />
             {firstName ? (
               <Animatable.View animation="bounceIn">
                 <Feather name="check-circle" color="green" size={20} />
               </Animatable.View>
             ) : null}
           </View>
-          <Text style={[styles.text_footer, {marginTop: 15}]}>LastName</Text>
+          <Text style={[styles.text_footer, { marginTop: 15 }]}>LastName</Text>
           <View style={styles.action}>
             <FontAwesome name="user-o" color="#05375a" size={20} />
-            <TextInput
-              placeholder="Your LastName"
-              style={styles.textInput}
-              autoCapitalize="none"
-              onChangeText={val => setLastName(val)}
-            />
+            <TextInput placeholder="Your LastName" style={styles.textInput} autoCapitalize="none" onChangeText={val => setLastName(val)} />
             {lastName ? (
               <Animatable.View animation="bounceIn">
                 <Feather name="check-circle" color="green" size={20} />
               </Animatable.View>
             ) : null}
           </View>
-          <Text style={[styles.text_footer, {marginTop: 15}]}>Email</Text>
+          <Text style={[styles.text_footer, { marginTop: 15 }]}>Email</Text>
           <View style={styles.action}>
             <FontAwesome name="envelope-o" color="#05375a" size={20} />
-            <TextInput
-              placeholder="Your Email"
-              style={styles.textInput}
-              autoCapitalize="none"
-              onChangeText={val => setEmail(val)}
-            />
+            <TextInput placeholder="Your Email" style={styles.textInput} autoCapitalize="none" onChangeText={val => setEmail(val)} />
             {email ? (
               <Animatable.View animation="bounceIn">
                 <Feather name="check-circle" color="green" size={20} />
               </Animatable.View>
             ) : null}
           </View>
-          <Text style={[styles.text_footer, {marginTop: 15}]}>Phone</Text>
+          <Text style={[styles.text_footer, { marginTop: 15 }]}>Phone</Text>
           <View style={styles.action}>
             <FontAwesome name="mobile-phone" color="#05375a" size={20} />
-            <TextInput
-              placeholder="Your Phone"
-              style={styles.textInput}
-              autoCapitalize="none"
-              onChangeText={val => setPhone(val)}
-            />
+            <TextInput placeholder="Your Phone" style={styles.textInput} autoCapitalize="none" onChangeText={val => setPhone(val)} />
             {phone ? (
               <Animatable.View animation="bounceIn">
                 <Feather name="check-circle" color="green" size={20} />
               </Animatable.View>
             ) : null}
           </View>
-          <Text style={[styles.text_footer, {marginTop: 15}]}>Birth</Text>
+          <Text style={[styles.text_footer, { marginTop: 15 }]}>Birth</Text>
           <View style={styles.action}>
             <FontAwesome name="calendar" color="#05375a" size={20} />
             {Platform.OS === 'ios' ? (
@@ -128,13 +99,7 @@ const SignUpScreen = ({navigation}) => {
               />
             ) : (
               <TouchableOpacity onPress={() => setShow(true)}>
-                <TextInput
-                  placeholder="Your Birth"
-                  style={styles.textInput}
-                  autoCapitalize="none"
-                  editable={false}
-                  value={birth}
-                />
+                <TextInput placeholder="Your Birth" style={styles.textInput} autoCapitalize="none" editable={false} value={birth} />
               </TouchableOpacity>
             )}
             {birth ? (
@@ -143,31 +108,26 @@ const SignUpScreen = ({navigation}) => {
               </Animatable.View>
             ) : null}
           </View>
-          <DateTimePickerModal
-            isVisible={show}
-            mode="date"
-            onConfirm={handleConfirmDate}
-            onCancel={hideDatePicker}
-          />
-          <Text style={[styles.text_footer, {marginTop: 15}]}>Gender</Text>
+          <DateTimePickerModal isVisible={show} mode="date" onConfirm={handleConfirmDate} onCancel={hideDatePicker} />
+          <Text style={[styles.text_footer, { marginTop: 15 }]}>Gender</Text>
           <View style={styles.action}>
             <FontAwesome name="transgender" color="#05375a" size={20} />
             <View style={styles.view_gender}>
               <TouchableOpacity onPress={() => setGender(1)}>
-                <Text style={[styles.element_gender, gender === 1 ? {color: 'green'} : null]}>Male</Text>
+                <Text style={[styles.element_gender, gender === 1 ? { color: 'green' } : null]}>Male</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => setGender(2)}>
-                <Text style={[styles.element_gender, gender === 2 ? {color: 'green'} : null]}>Female</Text>
+                <Text style={[styles.element_gender, gender === 2 ? { color: 'green' } : null]}>Female</Text>
               </TouchableOpacity>
             </View>
 
             {gender ? (
               <Animatable.View animation="bounceIn">
-                <Feather name="check-circle" color="green" size={20} style={{marginLeft: '60%'}} />
+                <Feather name="check-circle" color="green" size={20} style={{ marginLeft: '60%' }} />
               </Animatable.View>
             ) : null}
           </View>
-          <Text style={[styles.text_footer, {marginTop: 10}]}>Password</Text>
+          <Text style={[styles.text_footer, { marginTop: 10 }]}>Password</Text>
           <View style={styles.action}>
             <Feather name="lock" color="#05375a" size={20} />
             <TextInput
@@ -178,17 +138,11 @@ const SignUpScreen = ({navigation}) => {
               onChangeText={val => handlePasswordChange(val)}
             />
             <TouchableOpacity onPress={updateSecureTextEntry}>
-              {secureTextEntry ? (
-                <Feather name="eye-off" color="grey" size={20} />
-              ) : (
-                <Feather name="eye" color="grey" size={20} />
-              )}
+              {secureTextEntry ? <Feather name="eye-off" color="grey" size={20} /> : <Feather name="eye" color="grey" size={20} />}
             </TouchableOpacity>
           </View>
 
-          <Text style={[styles.text_footer, {marginTop: 10}]}>
-            Confirm Password
-          </Text>
+          <Text style={[styles.text_footer, { marginTop: 10 }]}>Confirm Password</Text>
           <View style={styles.action}>
             <Feather name="lock" color="#05375a" size={20} />
             <TextInput
@@ -199,26 +153,14 @@ const SignUpScreen = ({navigation}) => {
               onChangeText={val => handleConfirmPasswordChange(val)}
             />
             <TouchableOpacity onPress={updateConfirmSecureTextEntry}>
-              {confirmSecureTextEntry ? (
-                <Feather name="eye-off" color="grey" size={20} />
-              ) : (
-                <Feather name="eye" color="grey" size={20} />
-              )}
+              {confirmSecureTextEntry ? <Feather name="eye-off" color="grey" size={20} /> : <Feather name="eye" color="grey" size={20} />}
             </TouchableOpacity>
           </View>
           <View style={styles.textPrivate}>
-            <Text style={styles.color_textPrivate}>
-              By signing up you agree to our
-            </Text>
-            <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>
-              {' '}
-              Terms of service
-            </Text>
+            <Text style={styles.color_textPrivate}>By signing up you agree to our</Text>
+            <Text style={[styles.color_textPrivate, { fontWeight: 'bold' }]}> Terms of service</Text>
             <Text style={styles.color_textPrivate}> and</Text>
-            <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>
-              {' '}
-              Privacy policy
-            </Text>
+            <Text style={[styles.color_textPrivate, { fontWeight: 'bold' }]}> Privacy policy</Text>
           </View>
           <View style={styles.button}>
             <TouchableOpacity
@@ -228,11 +170,11 @@ const SignUpScreen = ({navigation}) => {
                   borderColor: '#009387',
                   borderWidth: 1,
                   marginTop: 10,
-                  backgroundColor: '#009387',
-                },
+                  backgroundColor: '#009387'
+                }
               ]}
               onPress={() => {}}>
-              <Text style={[styles.textSign, {color: '#fff'}]}>Sign Up</Text>
+              <Text style={[styles.textSign, { color: '#fff' }]}>Sign Up</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -242,10 +184,10 @@ const SignUpScreen = ({navigation}) => {
                 {
                   borderColor: '#009387',
                   borderWidth: 1,
-                  marginTop: 10,
-                },
+                  marginTop: 10
+                }
               ]}>
-              <Text style={[styles.textSign, {color: '#009387'}]}>Sign In</Text>
+              <Text style={[styles.textSign, { color: '#009387' }]}>Sign In</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>

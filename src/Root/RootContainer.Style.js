@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import ApplicationStyle from '../Themes/Application.Style';
 import colors from '../Themes/Colors';
 
@@ -12,7 +12,7 @@ export default StyleSheet.create({
     bottom: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   btnRetry: {
     width: 150,
@@ -20,10 +20,10 @@ export default StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: 4,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   textRetry: {
     color: colors.black,
-    fontWeight: 'bold',
-  },
+    fontWeight: 'bold'
+  }
 });

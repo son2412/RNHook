@@ -1,10 +1,6 @@
-import {
-  GET_MY_PROFILE_REQUEST,
-  GET_MY_PROFILE_SUCCESS,
-  GET_MY_PROFILE_FAIL,
-} from './MyProfile.Action';
+import { GET_MY_PROFILE_REQUEST, GET_MY_PROFILE_SUCCESS, GET_MY_PROFILE_FAIL } from './MyProfile.Action';
 
-const initialState = {fetching: false, data: {}, err: null};
+const initialState = { fetching: false, data: {}, err: null };
 
 export const getMyProfile = (state = initialState, action) => {
   switch (action.type) {
@@ -12,19 +8,19 @@ export const getMyProfile = (state = initialState, action) => {
       return {
         fetching: true,
         data: {},
-        err: null,
+        err: null
       };
     case GET_MY_PROFILE_SUCCESS:
       return {
         fetching: false,
         data: action.payload.data.data,
-        err: null,
+        err: null
       };
     case GET_MY_PROFILE_FAIL:
       return {
         fetching: false,
         data: {},
-        err: action.payload.err,
+        err: action.payload.err
       };
     default:
       return state;

@@ -4,5 +4,7 @@ module.exports = {
   rules: {
     'react-native/no-inline-styles': 'off',
     'prettier/prettier': 'warn',
+    "comma-dangle": ["error", "never"],
+    "incorrect": "multi"
   },
 };

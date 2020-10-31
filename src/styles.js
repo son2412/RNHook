@@ -9,14 +9,14 @@ const AppStyles = {
     grey: 'grey',
     green: 'green',
     onlineGreen: '#2ecc71',
-    lightWhite: '#f9f9f9',
+    lightWhite: '#f9f9f9'
   },
   fonts: {
     FONT_REGULAR: 'Roboto-Regular',
     FONT_MEDIUM: 'Roboto-Medium',
     FONT_LIGHT: 'Roboto-Light',
-    FONT_THIN: 'Roboto-Thin',
-  },
+    FONT_THIN: 'Roboto-Thin'
+  }
 };
 
 export default AppStyles;

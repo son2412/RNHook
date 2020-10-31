@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: Dimensions.get('window').width,
-    height: 420,
+    height: 420
     // marginVertical: 8
     // borderRadius: 3P
   },
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     right: 10
   },
   paginationText: {
-    color: 'white',
+    color: 'white'
   }
 });
 

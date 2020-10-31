@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import ApplicationStyle from '../../Themes/Application.Style';
-import {fontFamily, fontSize} from '../../const';
+import { fontFamily, fontSize } from '../../const';
 import colors from '../../Themes/Colors';
 
 export default StyleSheet.create({
@@ -10,11 +10,11 @@ export default StyleSheet.create({
     color: colors.charcoalGrey,
     fontSize: fontSize.medium,
     marginTop: 10,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   icon: {
     paddingHorizontal: 12,
     justifyContent: 'center',
-    alignItems: 'center',
-  },
+    alignItems: 'center'
+  }
 });

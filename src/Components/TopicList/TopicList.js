@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import TopicItem from './TopicItem';
 
-const TopicList = ({data}) => {
+const TopicList = ({ data }) => {
   const renderItem = ({ item }) => {
     return <TopicItem item={item} />;
   };

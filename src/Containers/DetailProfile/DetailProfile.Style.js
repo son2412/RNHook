@@ -1,6 +1,6 @@
-import {StyleSheet, Platform} from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import ApplicationStyle from '../../Themes/Application.Style';
-import {fontFamily, fontSize} from '../../const';
+import { fontFamily, fontSize } from '../../const';
 import colors from '../../Themes/Colors';
 
 export default StyleSheet.create({
@@ -10,21 +10,21 @@ export default StyleSheet.create({
     color: colors.charcoalGrey,
     fontSize: fontSize.medium,
     marginTop: 10,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   header: {
     backgroundColor: '#fe9c8f',
     height: 150,
     alignItems: 'center',
     justifyContent: 'center',
-    position: 'relative',
+    position: 'relative'
   },
   avatar: {
     width: 130,
     height: 130,
     borderRadius: 63,
     borderWidth: 4,
-    borderColor: 'white',
+    borderColor: 'white'
   },
   wrapCamera: {
     backgroundColor: 'white',
@@ -32,48 +32,48 @@ export default StyleSheet.create({
     position: 'absolute',
     left: '58%',
     top: '62%',
-    padding: 7,
+    padding: 7
   },
   text_footer: {
     color: '#05375a',
-    fontSize: 16,
+    fontSize: 16
   },
   action: {
     flexDirection: 'row',
     marginTop: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#f2f2f2',
+    borderBottomColor: '#f2f2f2'
     // paddingBottom: 5,
   },
   textInput: {
     flex: 1,
     marginTop: Platform.OS === 'ios' ? 0 : -12,
     paddingLeft: 10,
-    color: '#05375a',
+    color: '#05375a'
   },
   name: {
     fontSize: 22,
     color: '#FFFFFF',
-    fontWeight: '600',
+    fontWeight: '600'
   },
   body: {
-    paddingTop: 40,
+    paddingTop: 40
   },
   bodyContent: {
     flex: 1,
     alignItems: 'center',
-    padding: 30,
+    padding: 30
   },
   info: {
     fontSize: 16,
     color: '#00BFFF',
-    marginTop: 10,
+    marginTop: 10
   },
   description: {
     fontSize: 16,
     color: '#696969',
     marginTop: 10,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   buttonContainer: {
     marginTop: 10,
@@ -83,15 +83,15 @@ export default StyleSheet.create({
     alignItems: 'center',
     width: 250,
     borderRadius: 30,
-    backgroundColor: '#00BFFF',
+    backgroundColor: '#00BFFF'
   },
   view_gender: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   element_gender: {
     marginLeft: 50,
-    fontSize: 16,
+    fontSize: 16
   },
   footer: {
     flex: Platform.OS === 'ios' ? 3 : 5,
@@ -99,6 +99,6 @@ export default StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
-    paddingVertical: 30,
-  },
+    paddingVertical: 30
+  }
 });

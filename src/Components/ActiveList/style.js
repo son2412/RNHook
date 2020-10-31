@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   item: {
@@ -7,19 +7,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 16,
     paddingRight: 12,
-    paddingVertical: 8,
+    paddingVertical: 8
   },
   userName: {
     flex: 1,
     textAlign: 'left',
     paddingLeft: 8,
-    fontSize: 15,
+    fontSize: 15
   },
   wave: {
     width: 28,
     height: 28,
-    resizeMode: 'contain',
-  },
+    resizeMode: 'contain'
+  }
 });
 
 export default styles;

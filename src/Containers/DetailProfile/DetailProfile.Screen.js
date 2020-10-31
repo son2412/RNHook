@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { StatusBar, Text, TouchableOpacity, View, SafeAreaView, Image, TextInput, ScrollView, Platform } from 'react-native';
+import { StatusBar, Text, TouchableOpacity, View, SafeAreaView, Image, TextInput, ScrollView, Platform, ActivityIndicator } from 'react-native';
 import styles from './DetailProfile.Style';
 import colors from '../../Themes/Colors';
 import { barStyle } from '../../const';
@@ -11,7 +11,8 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 import Images from '../../../assets/images';
 import ImagePicker from 'react-native-image-picker';
-import { upload } from '../../Api/uploadApi';
+import configs from '../../config';
+import RNFetchBlob from 'rn-fetch-blob';
 
 const options = {
   title: 'Select Avatar',
@@ -75,21 +76,28 @@ const DetailProfileScreen = () => {
   };
 
   const uploadAvatar = () => {
+    setUploading(true);
     ImagePicker.launchImageLibrary(options, response => {
       if (response.didCancel) {
+        setUploading(false);
         console.log('User cancelled image picker');
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        const image = { uri: response.uri, type: response.type, name: response.fileName || response.uri.substr(response.uri.lastIndexOf('/') + 1) };
-        var fd = new FormData();
-        fd.append('files', response);
-        console.log(fd);
-        upload(fd)
-          .then(res => {
-            console.log(res);
+        RNFetchBlob.fetch(
+          'POST',
+          configs.apiDomain + 'upload/s3',
+          {
+            'Content-Type': 'multipart/form-data'
+          },
+          [{ name: 'files', filename: response.fileName || response.uri.substr(response.uri.lastIndexOf('/') + 1), data: response.data }]
+        )
+          .then(resp => {
+            const data = JSON.parse(resp.data);
+            setAvatar(data[0].location);
+            setUploading(false);
           })
           .catch(err => console.log(err));
       }
@@ -105,7 +113,11 @@ const DetailProfileScreen = () => {
             <Image style={styles.avatar} source={avatar ? { uri: avatar } : Images.Images.Avatar} />
             {visible ? (
               <View style={styles.wrapCamera}>
-                <MaterialCommunityIcons name={'camera-enhance-outline'} size={20} color={colors.black} onPress={uploadAvatar} />
+                {uploading ? (
+                  <ActivityIndicator size="small" />
+                ) : (
+                  <MaterialCommunityIcons name={'camera-enhance-outline'} size={20} color={colors.black} onPress={uploadAvatar} />
+                )}
               </View>
             ) : null}
           </View>

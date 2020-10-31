@@ -1,4 +1,3 @@
-import {sendPost} from './axios';
+import { sendPost } from './axios';
 
-export const login = ({email, password}) =>
-  sendPost('/auth/login', {email, password});
+export const login = ({ email, password }) => sendPost('/auth/login', { email, password });

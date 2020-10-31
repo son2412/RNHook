@@ -1,19 +1,19 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   rowSelector: {
     height: 20,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   selectorContainer: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   selected: {
     position: 'absolute',
@@ -24,27 +24,27 @@ export default StyleSheet.create({
     borderRightWidth: 70,
     borderBottomWidth: 70,
     borderColor: 'white',
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   loginContainer: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   loginTextButton: {
     fontSize: 16,
     color: 'white',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   loginButton: {
     backgroundColor: 'rgba(232, 147, 142, 1)',
     borderRadius: 10,
     height: 50,
-    width: 200,
+    width: 200
   },
   titleContainer: {
     height: 150,
     backgroundColor: 'transparent',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   formContainer: {
     backgroundColor: 'white',
@@ -52,12 +52,12 @@ export default StyleSheet.create({
     borderRadius: 10,
     paddingTop: 32,
     paddingBottom: 32,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   loginText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'white',
+    color: 'white'
   },
   bgImage: {
     flex: 1,
@@ -66,7 +66,7 @@ export default StyleSheet.create({
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   categoryText: {
     textAlign: 'center',
@@ -74,19 +74,19 @@ export default StyleSheet.create({
     fontSize: 24,
     fontFamily: 'light',
     backgroundColor: 'transparent',
-    opacity: 0.54,
+    opacity: 0.54
   },
   selectedCategoryText: {
-    opacity: 1,
+    opacity: 1
   },
   titleText: {
     color: 'white',
-    fontSize: 30,
+    fontSize: 30
     // fontFamily: 'regular',
   },
   helpContainer: {
     height: 64,
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 });

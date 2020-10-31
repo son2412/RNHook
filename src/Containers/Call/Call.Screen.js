@@ -1,7 +1,7 @@
-import React, {Fragment} from 'react';
-import {Text, View, SafeAreaView} from 'react-native';
+import React, { Fragment } from 'react';
+import { Text, View, SafeAreaView } from 'react-native';
 import styles from './Call.Style';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import CallList from '../../Components/CallList/CallList';
 
 const CallScreen = () => {
@@ -9,7 +9,7 @@ const CallScreen = () => {
 
   return (
     <Fragment>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.mainContainer}>
           <CallList />
         </View>

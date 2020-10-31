@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { ActivityIndicator, Image, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import styles from './Topic.Style';
 import colors from '../../Themes/Colors';
@@ -18,8 +18,8 @@ const TopicScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTopicRequest({page_index: page, page_size}));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(getTopicRequest({ page_index: page, page_size }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderToolbar = () => {
