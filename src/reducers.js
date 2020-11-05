@@ -9,6 +9,7 @@ import { getMyProfile } from './DrawerNavigator/MyProfile.Reducer';
 import { listChatWith } from '../src/Redux/Reducers/ListChatWith.Reducer';
 import { sendMessage } from '../src/Redux/Reducers/SendMessage.Reducer';
 import { createChatWith } from '../src/Redux/Reducers/CreateChatWith.Reducer';
+import { updateProfile } from '../src/Redux/Reducers/UpdateProfile.Reducer';
 
 const initialState = { fetching: false, data: null, err: null };
 
@@ -55,6 +56,7 @@ const rootReducer = combineReducers({
   getMyProfile,
   listChatWith,
   sendMessage,
-  createChatWith
+  createChatWith,
+  updateProfile,
 });
 export default rootReducer;

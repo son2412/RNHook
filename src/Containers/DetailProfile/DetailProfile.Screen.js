@@ -7,12 +7,14 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { useSelector } from 'react-redux';
 import moment from 'moment';
 import Images from '../../../assets/images';
 import ImagePicker from 'react-native-image-picker';
 import configs from '../../config';
 import RNFetchBlob from 'rn-fetch-blob';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateProfileRequest } from '../../Redux/Actions/UpdateProfile.Action';
+import { myProfileRequest } from '../../DrawerNavigator/MyProfile.Action';
 
 const options = {
   title: 'Select Avatar',
@@ -36,6 +38,10 @@ const DetailProfileScreen = () => {
   const [avatar, setAvatar] = useState(profile.image ? profile.image.url : '');
   const [uploading, setUploading] = useState(false);
 
+  const dispatch = useDispatch();
+  const updateProfile = useSelector(state => state.updateProfile.data);
+  const fetching = useSelector(state => state.updateProfile.fetching);
+
   const handleConfirmDate = date => {
     setBirth(moment(date).format('YYYY-MM-DD'));
     setShow(false);
@@ -49,12 +55,14 @@ const DetailProfileScreen = () => {
     const data = {
       first_name: firstName,
       last_name: lastName,
-      email: email,
       phone: phone,
       gender: gender,
-      birth: birth
+      birth: birth,
+      avatar: avatar
     };
-    console.log(data);
+    if (profile.email !== email) Object.assign(data, { email: email });
+    dispatch(updateProfileRequest(data));
+    dispatch(myProfileRequest());
     setVisible(false);
   };
 

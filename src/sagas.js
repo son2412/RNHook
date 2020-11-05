@@ -8,6 +8,7 @@ import { watchGetMyProfile } from './DrawerNavigator/MyProfile.Saga';
 import { watchListChatWith } from './Redux/Sagas/ListChatWith.Saga';
 import { watchSendMessage } from './Redux/Sagas/SendMessage.Saga';
 import { watchCreateChatWith } from './Redux/Sagas/CreateChatWith.Saga';
+import { watchUpdateProfile } from './Redux/Sagas/UpdateProfile.Saga';
 
 export default function* rootSaga() {
   yield all([
@@ -19,6 +20,7 @@ export default function* rootSaga() {
     watchGetMyProfile(),
     watchListChatWith(),
     watchSendMessage(),
-    watchCreateChatWith()
+    watchCreateChatWith(),
+    watchUpdateProfile()
   ]);
 }
