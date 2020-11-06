@@ -7,7 +7,7 @@ import configs from '../../config';
 import { useNavigation } from '@react-navigation/native';
 
 const { Agora } = NativeModules;
-const { FPS30, AudioProfileDefault, AudioScenarioDefault, Adaptative } = Agora;
+// const { AudioProfileDefault, AudioScenarioDefault, Adaptative } = Agora;
 const dimensions = {
   width: Dimensions.get('window').width,
   height: Dimensions.get('window').height
@@ -27,11 +27,11 @@ const VideoCallScreen = props => {
       width: 720,
       height: 1080,
       bitrate: 1,
-      frameRate: FPS30,
-      orientationMode: Adaptative
+      // frameRate: FPS30,
+      // orientationMode: Adaptative
     },
-    audioProfile: AudioProfileDefault,
-    audioScenario: AudioScenarioDefault
+    // audioProfile: AudioProfileDefault,
+    // audioScenario: AudioScenarioDefault
   };
   RtcEngine.init(config);
 
