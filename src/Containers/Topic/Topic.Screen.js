@@ -19,7 +19,6 @@ const TopicScreen = () => {
 
   useEffect(() => {
     dispatch(getTopicRequest({ page_index: page, page_size }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderToolbar = () => {
@@ -30,13 +29,19 @@ const TopicScreen = () => {
           <MaterialCommunityIcons name={'menu'} size={30} color={colors.white} />
         </TouchableOpacity>
         <View style={styles.viewWrapTitleToolbar}>
-          <Text style={styles.titleToolbar}>RNHook</Text>
+          <Text style={styles.titleToolbar}>Torm</Text>
         </View>
         <View style={styles.viewWrap1IcRight}>
-          <MaterialCommunityIcons name={'plus'} size={30} color={colors.white} />
+          <TouchableOpacity onPress={createTopic}>
+            <MaterialCommunityIcons name={'plus'} size={30} color={colors.white} />
+          </TouchableOpacity>
         </View>
       </View>
     );
+  };
+
+  const createTopic = () => {
+    navigation.navigate('CreateTopicScreen', {});
   };
 
   const renderDataView = () => {

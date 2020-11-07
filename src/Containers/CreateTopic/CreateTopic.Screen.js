@@ -1,0 +1,141 @@
+import React, { Fragment, useState } from 'react';
+import { ActivityIndicator, FlatList, Image, StatusBar, Text, TouchableOpacity, View, SafeAreaView, TextInput } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import styles from './CreateTopic.Style';
+import { getFollowerRequest } from '../Follower/Follower.Action';
+import NoDataView from '../../Components/NoDataView';
+import colors from '../../Themes/Colors';
+import { barStyle } from '../../const';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
+import ImagePicker from 'react-native-image-crop-picker';
+import configs from '../../config';
+import RNFetchBlob from 'rn-fetch-blob';
+
+const options = {
+  multiple: true,
+  mediaType: 'photo',
+  includeBase64: true
+};
+const CreateTopicScreen = () => {
+  const [title, setTitle] = useState('');
+  const [images, setImages] = useState([]);
+  const [uploading, setUploading] = useState(false);
+  const navigation = useNavigation();
+  const listFollower = useSelector(state => state.getFollower);
+  const dispatch = useDispatch();
+  const getFollower = () => dispatch(getFollowerRequest('son2412'));
+
+  const renderToolbar = () => {
+    return (
+      <View style={styles.toolbar}>
+        <StatusBar hidden={false} backgroundColor={colors.primary} barStyle={barStyle.lightContent} />
+        <TouchableOpacity style={styles.viewWrapIcLeft} onPress={() => navigation.goBack()}>
+          <MaterialCommunityIcons name={'arrow-left'} size={30} color={colors.white} />
+        </TouchableOpacity>
+        <View style={styles.viewWrapTitleToolbar}>
+          <Text style={styles.titleToolbar}>Create Post</Text>
+        </View>
+        <TouchableOpacity style={styles.viewWrapIcRight} disabled={!title && !images.length ? true : false} onPress={create}>
+          <Text style={{ fontSize: 18, color: '#ffffff' }}>{'Post'}</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  const create = () => {
+    console.log('aa');
+  };
+
+  const renderLoading = () => {
+    if (listFollower.fetching) {
+      return (
+        <View style={styles.viewLoading}>
+          <ActivityIndicator size="small" />
+        </View>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  const renderButton = () => {
+    return (
+      <View style={{ flex: 1 }}>
+        <TextInput
+          style={{ borderColor: 'gray', borderWidth: 0.5, flex: 1 }}
+          onChangeText={text => setTitle(text)}
+          value={title}
+          multiline={true}
+          numberOfLines={10}
+          placeholder={`What's on your mind?`}
+        />
+        {!images.length ? null : (
+          <View style={{ height: 50, alignItems: 'center', marginTop: 10, flexDirection: 'row' }}>
+            {images.map(i => (
+              <View style={{ position: 'relative' }}>
+                <Image style={{ width: 50, height: 50, borderRadius: 5, marginLeft: 15 }} source={{ uri: i.url }} />
+                <MaterialCommunityIcons
+                  style={{ position: 'absolute', top: -7, left: '85%' }}
+                  name={'close-circle'}
+                  size={20}
+                  color={colors.red}
+                  onPress={removeImage}
+                />
+              </View>
+            ))}
+          </View>
+        )}
+        <TouchableOpacity style={[styles.btnGetData]} onPress={addMedia}>
+          <Text style={styles.textGetData}>Add media to your post</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  const removeImage = () => {};
+
+  const addMedia = () => {
+    setUploading(true);
+    ImagePicker.openPicker(options).then(responses => {
+      let imageArr = [];
+      responses.map(i =>
+        imageArr.push({
+          name: 'files',
+          filename: i.filename || i.path.substr(i.path.lastIndexOf('/') + 1),
+          data: i.data
+        })
+      );
+      // map here
+      RNFetchBlob.fetch(
+        'POST',
+        configs.apiDomain + 'upload/s3',
+        {
+          'Content-Type': 'multipart/form-data'
+        },
+        imageArr
+      )
+        .then(resp => {
+          const urls = [];
+          const data = JSON.parse(resp.data);
+          data.map(d => urls.push({ url: d.location }));
+          setImages(urls);
+          setUploading(false);
+        })
+        .catch(err => console.log(err));
+    });
+  };
+
+  return (
+    <Fragment>
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.mainContainer}>
+          {renderToolbar()}
+          {renderButton()}
+          {renderLoading()}
+        </View>
+      </SafeAreaView>
+    </Fragment>
+  );
+};
+export default CreateTopicScreen;

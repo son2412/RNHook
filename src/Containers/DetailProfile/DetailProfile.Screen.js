@@ -1,5 +1,17 @@
-import React, { Fragment, useState } from 'react';
-import { StatusBar, Text, TouchableOpacity, View, SafeAreaView, Image, TextInput, ScrollView, Platform, ActivityIndicator } from 'react-native';
+import React, { Fragment, useState, useEffect } from 'react';
+import {
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+  Image,
+  TextInput,
+  ScrollView,
+  Platform,
+  ActivityIndicator,
+  Alert
+} from 'react-native';
 import styles from './DetailProfile.Style';
 import colors from '../../Themes/Colors';
 import { barStyle } from '../../const';
@@ -62,9 +74,14 @@ const DetailProfileScreen = () => {
     };
     if (profile.email !== email) Object.assign(data, { email: email });
     dispatch(updateProfileRequest(data));
-    dispatch(myProfileRequest());
     setVisible(false);
   };
+
+  useEffect(() => {
+    if (!fetching) {
+      dispatch(myProfileRequest());
+    }
+  }, [updateProfile]);
 
   const renderToolbar = () => {
     return (
@@ -86,6 +103,7 @@ const DetailProfileScreen = () => {
   const uploadAvatar = () => {
     setUploading(true);
     ImagePicker.launchImageLibrary(options, response => {
+      console.log(response)
       if (response.didCancel) {
         setUploading(false);
         console.log('User cancelled image picker');
@@ -218,7 +236,6 @@ const DetailProfileScreen = () => {
               </View>
             </ScrollView>
           </View>
-          {/* </Animatable.View> */}
         </View>
       </SafeAreaView>
     </Fragment>

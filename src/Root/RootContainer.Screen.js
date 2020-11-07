@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import DetailChatScreen from '../Containers/DetailChat/DetailChat.Screen';
 import DetailFollowerScreen from '../Containers/DetailFollower/DetailFollower.Screen';
 import VideoCallScreen from '../Containers/VideoCall/VideoCall.Screen';
+import CreateTopicScreen from '../Containers/CreateTopic/CreateTopic.Screen';
 
 const Stack = createStackNavigator();
 
@@ -84,6 +85,7 @@ const RootContainerScreen = () => {
                 options={{ gestureEnabled: true, gestureDirection: 'horizontal' }}
               />
               <Stack.Screen name="VideoCallScreen" component={VideoCallScreen} options={{ gestureEnabled: true, gestureDirection: 'horizontal' }} />
+              <Stack.Screen name="CreateTopicScreen" component={CreateTopicScreen} options={{ gestureEnabled: true, gestureDirection: 'horizontal' }} />
             </>
           </Stack.Navigator>
         ) : (
