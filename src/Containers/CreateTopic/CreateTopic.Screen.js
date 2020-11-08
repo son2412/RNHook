@@ -1,9 +1,8 @@
-import React, { Fragment, useState } from 'react';
-import { ActivityIndicator, FlatList, Image, StatusBar, Text, TouchableOpacity, View, SafeAreaView, TextInput } from 'react-native';
+import React, { Fragment, useState, useEffect } from 'react';
+import { ActivityIndicator, Image, StatusBar, Text, TouchableOpacity, View, SafeAreaView, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './CreateTopic.Style';
-import { getFollowerRequest } from '../Follower/Follower.Action';
-import NoDataView from '../../Components/NoDataView';
+import { createTopicRequest } from '../../Redux/Actions/CreateTopic.Action';
 import colors from '../../Themes/Colors';
 import { barStyle } from '../../const';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -11,6 +10,8 @@ import { useNavigation } from '@react-navigation/native';
 import ImagePicker from 'react-native-image-crop-picker';
 import configs from '../../config';
 import RNFetchBlob from 'rn-fetch-blob';
+import { reNewTopic, getTopicRequest } from '../Topic/Topic.Action';
+import _ from 'lodash';
 
 const options = {
   multiple: true,
@@ -22,9 +23,10 @@ const CreateTopicScreen = () => {
   const [images, setImages] = useState([]);
   const [uploading, setUploading] = useState(false);
   const navigation = useNavigation();
-  const listFollower = useSelector(state => state.getFollower);
+  const topic = useSelector(state => state.createTopic.data);
+  const fetching = useSelector(state => state.createTopic.fetching);
+  const topics = useSelector(state => state.getTopic.data);
   const dispatch = useDispatch();
-  const getFollower = () => dispatch(getFollowerRequest('son2412'));
 
   const renderToolbar = () => {
     return (
@@ -44,11 +46,19 @@ const CreateTopicScreen = () => {
   };
 
   const create = () => {
-    console.log('aa');
+    dispatch(createTopicRequest({ title: title, images: images }));
   };
 
+  // useEffect(() => {
+  //   if (!fetching && !_.isEmpty(topic) && !_.isEmpty(topics)) {
+  //     dispatch(reNewTopic());
+  //     dispatch(getTopicRequest({ page_index: 1, page_size: 15 }));
+  //     navigation.goBack();
+  //   }
+  // }, [topic, topics, fetching]);
+
   const renderLoading = () => {
-    if (listFollower.fetching) {
+    if (fetching) {
       return (
         <View style={styles.viewLoading}>
           <ActivityIndicator size="small" />
@@ -72,28 +82,34 @@ const CreateTopicScreen = () => {
         />
         {!images.length ? null : (
           <View style={{ height: 50, alignItems: 'center', marginTop: 10, flexDirection: 'row' }}>
-            {images.map(i => (
-              <View style={{ position: 'relative' }}>
+            {images.map((i, index) => (
+              <View style={{ position: 'relative' }} key={index + 1}>
                 <Image style={{ width: 50, height: 50, borderRadius: 5, marginLeft: 15 }} source={{ uri: i.url }} />
                 <MaterialCommunityIcons
                   style={{ position: 'absolute', top: -7, left: '85%' }}
                   name={'close-circle'}
                   size={20}
                   color={colors.red}
-                  onPress={removeImage}
+                  onPress={() => removeImage(i)}
                 />
               </View>
             ))}
           </View>
         )}
-        <TouchableOpacity style={[styles.btnGetData]} onPress={addMedia}>
+        <TouchableOpacity style={[styles.btnGetData]} disabled={uploading} onPress={addMedia}>
           <Text style={styles.textGetData}>Add media to your post</Text>
         </TouchableOpacity>
       </View>
     );
   };
 
-  const removeImage = () => {};
+  const removeImage = image => {
+    const imageArr = [];
+    images.map(i => {
+      if (i !== image) imageArr.push(i);
+    });
+    setImages(imageArr);
+  };
 
   const addMedia = () => {
     setUploading(true);
@@ -116,7 +132,7 @@ const CreateTopicScreen = () => {
         imageArr
       )
         .then(resp => {
-          const urls = [];
+          const urls = images;
           const data = JSON.parse(resp.data);
           data.map(d => urls.push({ url: d.location }));
           setImages(urls);

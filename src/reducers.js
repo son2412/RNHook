@@ -10,6 +10,7 @@ import { listChatWith } from '../src/Redux/Reducers/ListChatWith.Reducer';
 import { sendMessage } from '../src/Redux/Reducers/SendMessage.Reducer';
 import { createChatWith } from '../src/Redux/Reducers/CreateChatWith.Reducer';
 import { updateProfile } from '../src/Redux/Reducers/UpdateProfile.Reducer';
+import { createTopic } from '../src/Redux/Reducers/CreateTopic.Reducer';
 
 const initialState = { fetching: false, data: null, err: null };
 
@@ -58,5 +59,6 @@ const rootReducer = combineReducers({
   sendMessage,
   createChatWith,
   updateProfile,
+  createTopic
 });
 export default rootReducer;
