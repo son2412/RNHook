@@ -23,9 +23,10 @@ const DetailChatScreen = props => {
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
   const onPress = () => {
-    navigation.navigate('VideoCallScreen', {
-      channelName: group.id
-    });
+    console.log('Pressed!');
+    // navigation.navigate('VideoCallScreen', {
+    //   channelName: group.id
+    // });
   };
   if (Platform.OS === 'android') {
     requestCameraAndAudioPermission().then(_ => {
