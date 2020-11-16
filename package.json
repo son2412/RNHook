@@ -8,7 +8,8 @@
     "start": "npx react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "x": "npx react-native run-ios --simulator='iPhone X' "
+    "x": "npx react-native run-ios --simulator='iPhone X' ",
+    "clean": "cd android && ./gradlew clean"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.8.1",
