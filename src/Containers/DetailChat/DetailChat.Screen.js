@@ -28,11 +28,11 @@ const DetailChatScreen = props => {
     //   channelName: group.id
     // });
   };
-  if (Platform.OS === 'android') {
-    requestCameraAndAudioPermission().then(_ => {
-      console.log('requested!');
-    });
-  }
+  // if (Platform.OS === 'android') {
+  //   requestCameraAndAudioPermission().then(_ => {
+  //     console.log('requested!');
+  //   });
+  // }
   useEffect(() => {
     setLoading(true);
     Firebase.database()
