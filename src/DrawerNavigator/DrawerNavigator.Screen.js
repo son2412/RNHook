@@ -1,14 +1,14 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import TopicScreen from '../Containers/Topic/Topic.Screen';
-import FollowerScreen from '../Containers/Follower/Follower.Screen';
-import ChatScreen from '../Containers/Chat/Chat.Screen';
+import TopicScreen from '../Screens/Topic/Topic.Screen';
+import FollowerScreen from '../Screens/Follower/Follower.Screen';
+import ChatScreen from '../Screens/Chat/Chat.Screen';
 import React, { Fragment } from 'react';
 import colors from '../Themes/Colors';
 import styles from './DrawerNavigator.Style';
-import CounterScreen from '../Containers/Counter/Counter.Screen';
+import CounterScreen from '../Screens/Counter/Counter.Screen';
 import { SafeAreaView } from 'react-native';
 import DrawerContentScreen from './DrawerContent.Screen';
-import DetailProfileScreen from '../Containers/DetailProfile/DetailProfile.Screen';
+import DetailProfileScreen from '../Screens/DetailProfile/DetailProfile.Screen';
 
 const Drawer = createDrawerNavigator();
 

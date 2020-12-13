@@ -6,7 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { barStyle } from '../../const';
 import { useDispatch, useSelector } from 'react-redux';
 import NoDataView from '../../Components/NoDataView';
-import { getTopicRequest } from './Topic.Action';
+import { getTopicRequest } from '../../Redux/Actions/Topic.Action';
 import { useNavigation } from '@react-navigation/native';
 import TopicList from '../../Components/TopicList/TopicList';
 

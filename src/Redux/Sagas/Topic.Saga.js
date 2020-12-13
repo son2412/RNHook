@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { GET_TOPIC_REQUEST, getTopicFail, getTopicSuccess } from './Topic.Action';
+import { GET_TOPIC_REQUEST, getTopicFail, getTopicSuccess } from '../Actions/Topic.Action';
 import { getTopics } from '../../Api/topicApi';
 import { sendNetworkFail } from '../../actions';
 

@@ -1,24 +1,24 @@
-import { LIST_GROUP_REQUEST, LIST_GROUP_SUCCESS, LIST_GROUP_FAIL } from './ListChat.Acion';
+import { ACTIVE_REQUEST, ACTIVE_SUCCESS, ACTIVE_FAIL } from '../Actions/Active.Action';
 
 const initialState = { fetching: false, data: [], totalPage: 0, err: null };
 
-export const getListGroup = (state = initialState, action) => {
+export const getUserActive = (state = initialState, action) => {
   switch (action.type) {
-    case LIST_GROUP_REQUEST:
+    case ACTIVE_REQUEST:
       return {
         fetching: true,
-        data: [],
+        data: state.data,
         err: null,
         totalPage: 0
       };
-    case LIST_GROUP_SUCCESS:
+    case ACTIVE_SUCCESS:
       return {
         fetching: false,
         data: [...state.data, ...action.payload.data.data],
         err: null,
         totalPage: action.payload.data.totalPage
       };
-    case LIST_GROUP_FAIL:
+    case ACTIVE_FAIL:
       return {
         fetching: false,
         data: [],

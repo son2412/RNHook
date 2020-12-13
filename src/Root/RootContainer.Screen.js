@@ -9,10 +9,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearNetworkFail, checkSignIn } from '../actions';
 import RootStackScreen from './RootStack.Screen';
 import AsyncStorage from '@react-native-community/async-storage';
-import DetailChatScreen from '../Containers/DetailChat/DetailChat.Screen';
-import DetailFollowerScreen from '../Containers/DetailFollower/DetailFollower.Screen';
-import VideoCallScreen from '../Containers/VideoCall/VideoCall.Screen';
-import CreateTopicScreen from '../Containers/CreateTopic/CreateTopic.Screen';
+import DetailChatScreen from '../Screens/DetailChat/DetailChat.Screen';
+import DetailFollowerScreen from '../Screens/DetailFollower/DetailFollower.Screen';
+import VideoCallScreen from '../Screens/VideoCall/VideoCall.Screen';
+import CreateTopicScreen from '../Screens/CreateTopic/CreateTopic.Screen';
 
 const Stack = createStackNavigator();
 

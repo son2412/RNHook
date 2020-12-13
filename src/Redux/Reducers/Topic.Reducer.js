@@ -1,4 +1,4 @@
-import { GET_TOPIC_AIL, GET_TOPIC_REQUEST, GET_TOPIC_SUCCESS, RE_NEW_TOPIC } from './Topic.Action';
+import { GET_TOPIC_AIL, GET_TOPIC_REQUEST, GET_TOPIC_SUCCESS, RE_NEW_TOPIC } from '../Actions/Topic.Action';
 
 const initialState = { fetching: false, data: [], err: null };
 

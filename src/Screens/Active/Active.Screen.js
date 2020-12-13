@@ -4,7 +4,7 @@ import styles from './Active.Style';
 // import {useNavigation} from '@react-navigation/native';
 import ActiveList from '../../Components/ActiveList/ActiveList';
 import { useDispatch, useSelector } from 'react-redux';
-import { activeRequest } from './Active.Action';
+import { activeRequest } from '../../Redux/Actions/Active.Action';
 
 const page_size = 15;
 const ActiveScreen = () => {

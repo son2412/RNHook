@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 // import {listUserActive} from '../../api';
-import { ACTIVE_REQUEST, activeFail, activeSuccess } from './Active.Action';
+import { ACTIVE_REQUEST, activeFail, activeSuccess } from '../Actions/Active.Action';
 import { sendNetworkFail } from '../../actions';
 import { getUserOnline } from '../../Api/userApi';
 

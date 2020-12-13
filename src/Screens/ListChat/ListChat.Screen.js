@@ -4,7 +4,7 @@ import styles from './ListChat.Style';
 // import {useNavigation} from '@react-navigation/native';
 import ChatList from '../../Components/ChatList/ChatList';
 import { useDispatch, useSelector } from 'react-redux';
-import { listChatRequest } from './ListChat.Acion';
+import { listChatRequest } from '../../Redux/Actions/ListChat.Acion';
 import { listChatWithRequest } from '../../Redux/Actions/ListChatWith.Action';
 import { Firebase } from '../../const';
 

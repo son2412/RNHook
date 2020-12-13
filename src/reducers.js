@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import { getTopic } from './Containers/Topic/Topic.Reducer';
-import { getFollower } from './Containers/Follower/Follower.Reducer';
-import { signIn } from './Containers/SignIn/SignIn.Reducer';
-import { getUserActive } from './Containers/Active/Active.Reducer';
-import { getListGroup } from './Containers/ListChat/ListChat.Reducer';
+import { getTopic } from './Redux/Reducers/Topic.Reducer';
+import { getFollower } from './Screens/Follower/Follower.Reducer';
+import { signIn } from './Screens/SignIn/SignIn.Reducer';
+import { getUserActive } from './Redux/Reducers/Active.Reducer';
+import { getListGroup } from './Redux/Reducers/ListChat.Reducer';
 import { CLEAR_NETWORK_FAIL, SEND_NETWORK_FAIL, RETRIEVE_TOKEN, SIGN_OUT } from './actions';
 import { getMyProfile } from './DrawerNavigator/MyProfile.Reducer';
 import { listChatWith } from '../src/Redux/Reducers/ListChatWith.Reducer';

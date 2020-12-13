@@ -6,7 +6,7 @@ import Images from '../../../assets/images';
 import styles from './style';
 // import {chatWith} from '../../Api/groupApi';
 import { useDispatch, useSelector } from 'react-redux';
-import { listChatRequest } from '../../Containers/ListChat/ListChat.Acion';
+import { listChatRequest } from '../../Redux/Actions/ListChat.Acion';
 import { createChatWithRequest } from '../../Redux/Actions/CreateChatWith.Action';
 import { useNavigation } from '@react-navigation/native';
 

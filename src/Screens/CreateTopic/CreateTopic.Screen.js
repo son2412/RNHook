@@ -10,7 +10,6 @@ import { useNavigation } from '@react-navigation/native';
 import ImagePicker from 'react-native-image-crop-picker';
 import configs from '../../config';
 import RNFetchBlob from 'rn-fetch-blob';
-import { reNewTopic, getTopicRequest } from '../Topic/Topic.Action';
 import _ from 'lodash';
 
 const options = {

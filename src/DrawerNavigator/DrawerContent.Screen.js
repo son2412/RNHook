@@ -8,7 +8,7 @@ import { myProfileRequest } from './MyProfile.Action';
 import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import { signOut } from '../actions';
-import { signInInit } from '../Containers/SignIn/SignIn.Action';
+import { signInInit } from '../Screens/SignIn/SignIn.Action';
 import DrawerProfile from '../Components/DrawerProfile.js/DrawerProfile';
 import styles from './DrawerNavigator.Style';
 

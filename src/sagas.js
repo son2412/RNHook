@@ -1,9 +1,9 @@
 import { all } from 'redux-saga/effects';
-import { watchGetTopic } from './Containers/Topic/Topic.Saga';
-import { watchGetFollower } from './Containers/Follower/Follower.Saga';
-import { watchSignIn } from './Containers/SignIn/SignIn.Saga';
-import { watchGetUserActive } from './Containers/Active/Active.Saga';
-import { watchGetListGroup } from './Containers/ListChat/ListChat.Saga';
+import { watchGetTopic } from './Redux/Sagas/Topic.Saga';
+import { watchGetFollower } from './Screens/Follower/Follower.Saga';
+import { watchSignIn } from './Screens/SignIn/SignIn.Saga';
+import { watchGetUserActive } from './Redux/Sagas/Active.Saga';
+import { watchGetListGroup } from './Redux/Sagas/ListChat.Saga';
 import { watchGetMyProfile } from './DrawerNavigator/MyProfile.Saga';
 import { watchListChatWith } from './Redux/Sagas/ListChatWith.Saga';
 import { watchSendMessage } from './Redux/Sagas/SendMessage.Saga';

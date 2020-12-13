@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getGroups } from '../../Api/groupApi';
-import { LIST_GROUP_REQUEST, listChatFail, listChatSuccess } from './ListChat.Acion';
+import { LIST_GROUP_REQUEST, listChatFail, listChatSuccess } from '../Actions/ListChat.Acion';
 import { sendNetworkFail } from '../../actions';
 
 export function* watchGetListGroup() {
