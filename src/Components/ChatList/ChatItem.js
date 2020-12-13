@@ -5,10 +5,11 @@ import Avatar from '../Avatar/Avatar';
 import styles from './style';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
+import { calTime } from '../../const';
 
 const TYPE_SINGLE = 1;
 const TYPE_GROUP = 2;
-const ChatItem = ({ item }) => {
+const ChatItem = ({ item, message }) => {
   const navigation = useNavigation();
   const profile = useSelector(state => state.getMyProfile.data);
   const onPress = () => {
@@ -39,9 +40,9 @@ const ChatItem = ({ item }) => {
         <Avatar uri={renderItem().avatar} enableDot />
         <View style={{ flex: 1 }}>
           <Text style={styles.userName}>{renderItem().name}</Text>
-          <Text style={styles.lastMessage}>{'hello guy !'}</Text>
+          <Text style={styles.lastMessage}>{message ? message[0].text : null}</Text>
         </View>
-        <Text>{'17:30'}</Text>
+        <Text>{message ? calTime(message[0].createdAt) : null}</Text>
       </View>
     </TouchableRipple>
   );

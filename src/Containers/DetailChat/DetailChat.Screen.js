@@ -35,29 +35,27 @@ const DetailChatScreen = props => {
   // }
   useEffect(() => {
     setLoading(true);
-    Firebase.database()
-      .ref('chats/' + group.id)
-      .on('value', snap => {
-        let items = [];
-        let item = {};
-        snap.forEach(child => {
-          const childItem = child.val();
-          const user = group.users.find(x => childItem.sender_id === x.id);
-          item = {
-            _id: childItem.id,
-            text: childItem.message,
-            createdAt: childItem.created_at || new Date(),
-            user: {
-              _id: user.id,
-              name: user.first_name + ' ' + user.last_name,
-              avatar: user.image ? user.image.url : null
-            }
-          };
-          items.push(item);
-        });
-        setMessages(items.sort((a, b) => b._id - a._id));
-        setLoading(false);
+    Firebase.ref('chats/' + group.id).on('value', snap => {
+      let items = [];
+      let item = {};
+      snap.forEach(child => {
+        const childItem = child.val();
+        const user = group.users.find(x => childItem.sender_id === x.id);
+        item = {
+          _id: childItem.id,
+          text: childItem.message,
+          createdAt: childItem.created_at || new Date(),
+          user: {
+            _id: user.id,
+            name: user.first_name + ' ' + user.last_name,
+            avatar: user.image ? user.image.url : null
+          }
+        };
+        items.push(item);
       });
+      setMessages(items.sort((a, b) => b._id - a._id));
+      setLoading(false);
+    });
     // return function cleanup() {};
   }, [group]);
   const onSend = text => {

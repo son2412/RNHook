@@ -15,6 +15,7 @@ import com.swmansion.reanimated.ReanimatedPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 import com.reactcommunity.rndatetimepicker.RNDateTimePickerPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +40,8 @@ public class MainApplication extends Application implements ReactApplication {
                     new AsyncStoragePackage(),
                     new SafeAreaContextPackage(),
                     new RNDateTimePickerPackage(),
-                    new RNFetchBlobPackage()
+                    new RNFetchBlobPackage(),
+                    new ReactNativePushNotificationPackage()
             );
         }
 

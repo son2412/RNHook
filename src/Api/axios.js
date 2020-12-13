@@ -10,6 +10,7 @@ axiosInstance.interceptors.request.use(
   async config => {
     const token = await AsyncStorage.getItem('token');
     config.headers.Authorization = `Bearer ${token}`;
+    config.headers.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     return config;
   },
   error => Promise.reject(error)
